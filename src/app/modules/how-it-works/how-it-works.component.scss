@@ -1,0 +1,448 @@
+// src/app/modules/how-it-works/how-it-works.component.scss
+
+// Importamos variables
+@import 'src/assets/scss/variables';
+
+// Estilos generales de la sección
+.how-section {
+  padding: 120px 0 80px;
+  background-color: $light;
+  
+  .section-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: $primary;
+    text-align: center;
+    font-weight: 700;
+  }
+  
+  .section-description {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    color: $dark;
+  }
+}
+
+// Selector de servicio
+.service-selector {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  
+  button {
+    padding: 15px 30px;
+    margin: 0 10px;
+    background-color: white;
+    border: 2px solid $primary;
+    border-radius: 50px;
+    color: $primary;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    
+    fa-icon {
+      margin-right: 10px;
+    }
+    
+    &:hover {
+      background-color: rgba($primary, 0.1);
+    }
+    
+    &.active {
+      background-color: $primary;
+      color: white;
+    }
+  }
+}
+
+// Contenedor de pasos
+.steps-container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    left: 65px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #ddd;
+    z-index: 1;
+  }
+  
+  // Item de paso
+  .step-item {
+    display: flex;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 2;
+    
+    .step-number {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: $primary;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 700;
+      margin-right: 40px;
+      border: 5px solid white;
+      box-shadow: 0 0 0 2px $primary;
+      flex-shrink: 0;
+    }
+    
+    .step-content {
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      flex: 1;
+      margin-right: 20px;
+      
+      .step-icon {
+        width: 60px;
+        height: 60px;
+        background-color: rgba($primary, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        color: $primary;
+        font-size: 24px;
+      }
+      
+      h3 {
+        font-size: 22px;
+        margin-bottom: 10px;
+        color: $primary;
+        font-weight: 700;
+      }
+      
+      p {
+        color: $dark;
+        margin-bottom: 0;
+      }
+    }
+    
+    .step-image {
+      width: 200px;
+      height: 150px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    
+    &:last-child {
+      margin-bottom: 40px;
+    }
+  }
+  
+  // Llamada a la acción
+  .step-cta {
+    text-align: center;
+    padding: 40px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-top: 30px;
+    
+    p {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: $dark;
+      font-weight: 500;
+    }
+    
+    .btn-primary {
+      display: inline-block;
+      padding: 12px 30px;
+      background-color: $accent;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+      
+      &:hover {
+        background-color: darken($accent, 5%);
+      }
+    }
+  }
+}
+
+// Sección de FAQ
+.faq-section {
+  padding: 80px 0;
+  background-color: white;
+  
+  .section-title {
+    font-size: 36px;
+    margin-bottom: 50px;
+    color: $primary;
+    text-align: center;
+    font-weight: 700;
+  }
+}
+
+// Contenedor de FAQ
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+  
+  // Item de pregunta
+  .faq-item {
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    overflow: hidden;
+    
+    .faq-question {
+      padding: 20px;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      
+      h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        color: $dark;
+      }
+      
+      fa-icon {
+        color: $primary;
+      }
+      
+      &:hover {
+        background-color: #f0f0f0;
+      }
+    }
+    
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      
+      p {
+        color: #666;
+        margin: 0;
+      }
+      
+      &.open {
+        padding: 20px;
+        max-height: 300px;
+      }
+    }
+  }
+}
+
+// Sección de testimonios
+.testimonial-section {
+  padding: 80px 0;
+  background-color: $light;
+  
+  .section-title {
+    font-size: 36px;
+    margin-bottom: 50px;
+    color: $primary;
+    text-align: center;
+    font-weight: 700;
+  }
+}
+
+// Contenedor de testimonios
+.testimonial-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+  
+  // Tarjeta de testimonio
+  .testimonial-card {
+    width: 30%;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+    
+    .testimonial-rating {
+      margin-bottom: 20px;
+      
+      fa-icon {
+        color: #ddd;
+        margin-right: 5px;
+        
+        &.active {
+          color: $accent;
+        }
+      }
+    }
+    
+    .testimonial-comment {
+      color: $dark;
+      margin-bottom: 20px;
+      font-style: italic;
+      position: relative;
+      
+      &:before {
+        content: '"';
+        font-size: 60px;
+        position: absolute;
+        top: -30px;
+        left: -10px;
+        color: rgba($accent, 0.1);
+        z-index: 0;
+      }
+    }
+    
+    .testimonial-author {
+      .author-name {
+        font-weight: 700;
+        color: $primary;
+        margin-bottom: 5px;
+      }
+      
+      .author-location {
+        color: #888;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+// Sección de CTA final
+.final-cta {
+  padding: 80px 0;
+  background: linear-gradient(rgba($primary, 0.9), rgba($primary, 0.9)), url('/assets/images/cta-bg.jpg') center/cover no-repeat;
+  text-align: center;
+  color: white;
+  
+  h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  
+  p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .cta-buttons {
+    .btn-primary, .btn-secondary {
+      display: inline-block;
+      padding: 15px 30px;
+      border-radius: 5px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin: 0 10px;
+    }
+    
+    .btn-primary {
+      background-color: $accent;
+      color: white;
+      
+      &:hover {
+        background-color: darken($accent, 5%);
+      }
+    }
+    
+    .btn-secondary {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      
+      &:hover {
+        background-color: rgba(255,255,255,0.1);
+      }
+    }
+  }
+}
+
+// Media queries
+@media (max-width: $breakpoint-lg) {
+  .steps-container {
+    padding: 0 20px;
+    
+    .step-item {
+      .step-image {
+        display: none;
+      }
+    }
+  }
+  
+  .testimonial-container {
+    .testimonial-card {
+      width: 48%;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .service-selector {
+    flex-direction: column;
+    
+    button {
+      margin: 0 0 15px 0;
+    }
+  }
+  
+  .steps-container {
+    &:before {
+      display: none;
+    }
+    
+    .step-item {
+      flex-direction: column;
+      
+      .step-number {
+        margin: 0 auto 20px;
+      }
+    }
+  }
+  
+  .testimonial-container {
+    .testimonial-card {
+      width: 100%;
+    }
+  }
+  
+  .final-cta {
+    .cta-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+      .btn-primary, .btn-secondary {
+        margin: 10px 0;
+        width: 80%;
+      }
+    }
+  }
+}

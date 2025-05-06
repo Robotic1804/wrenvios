@@ -1,0 +1,71 @@
+// src/assets/scss/variables.scss
+
+// Colores principales
+$primary: #1a5276;    // Azul oscuro
+$secondary: #c0392b;  // Rojo
+$accent: #f39c12;     // Amarillo/Dorado
+$light: #f8f9fa;      // Gris muy claro
+$dark: #333333;       // Negro/Gris oscuro
+$gray: #f2f2f2;       // Gris claro
+
+// Fuentes
+$font-family-base: 'Roboto', sans-serif;
+$font-family-headings: 'Montserrat', sans-serif;
+
+// Tamaños de fuente
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-sm: 14px;
+$font-size-xs: 12px;
+
+$h1-font-size: 36px;
+$h2-font-size: 30px;
+$h3-font-size: 24px;
+$h4-font-size: 20px;
+$h5-font-size: 18px;
+$h6-font-size: 16px;
+
+// Breakpoints para responsive
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Espaciados
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,    // 4px
+  2: $spacer * 0.5,     // 8px
+  3: $spacer,           // 16px
+  4: $spacer * 1.5,     // 24px
+  5: $spacer * 3,       // 48px
+  6: $spacer * 4,       // 64px
+  7: $spacer * 5        // 80px
+);
+
+// Bordes
+$border-radius: 5px;
+$border-radius-lg: 10px;
+$border-radius-sm: 3px;
+$border-width: 1px;
+
+// Sombras
+$box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+$box-shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+$box-shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+// Transiciones
+$transition-base: all 0.3s ease;
+$transition-slow: all 0.5s ease;
+$transition-fast: all 0.15s ease;
+
+// Z-index
+$zindex-dropdown: 1000;
+$zindex-sticky: 1020;
+$zindex-fixed: 1030;
+$zindex-modal-backdrop: 1040;
+$zindex-modal: 1050;
+$zindex-popover: 1060;
+$zindex-tooltip: 1070;

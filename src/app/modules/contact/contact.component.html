@@ -1,0 +1,231 @@
+<!-- src/app/modules/contact/contact.component.html -->
+<section class="contact-section">
+  <div class="container">
+    <h1 class="section-title">Contáctanos</h1>
+    <p class="section-description">Estamos aquí para ayudarte. Envíanos tus dudas, comentarios o solicitudes y te responderemos a la brevedad.</p>
+    
+    <div class="contact-container">
+      <!-- Formulario de contacto -->
+      <div class="contact-form-container">
+        <h2>Envíanos un mensaje</h2>
+        
+        <!-- Mensajes de éxito o error -->
+        <div class="alert success" *ngIf="formSuccess">
+          <fa-icon [icon]="['fas', 'check-circle']"></fa-icon>
+          <span>¡Mensaje enviado con éxito! Te responderemos a la brevedad.</span>
+        </div>
+        
+        <div class="alert error" *ngIf="formError">
+          <fa-icon [icon]="['fas', 'exclamation-circle']"></fa-icon>
+          <span>{{ errorMessage }}</span>
+        </div>
+        
+        <!-- Formulario -->
+        <form [formGroup]="contactForm" (ngSubmit)="submitForm()">
+          <!-- Nombre -->
+          <div class="form-group">
+            <label for="name">Nombre Completo *</label>
+            <input 
+              type="text" 
+              id="name" 
+              formControlName="name" 
+              [ngClass]="{'is-invalid': isInvalidAndTouched('name')}"
+              placeholder="Ingresa tu nombre completo"
+            >
+            <div class="invalid-feedback" *ngIf="isInvalidAndTouched('name')">
+              <span *ngIf="contactForm.get('name')?.errors?.required">El nombre es requerido.</span>
+              <span *ngIf="contactForm.get('name')?.errors?.minlength">El nombre debe tener al menos 3 caracteres.</span>
+            </div>
+          </div>
+          
+          <!-- Email y Teléfono -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Correo Electrónico *</label>
+              <input 
+                type="email" 
+                id="email" 
+                formControlName="email" 
+                [ngClass]="{'is-invalid': isInvalidAndTouched('email')}"
+                placeholder="correo@ejemplo.com"
+              >
+              <div class="invalid-feedback" *ngIf="isInvalidAndTouched('email')">
+                <span *ngIf="contactForm.get('email')?.errors?.required">El correo es requerido.</span>
+                <span *ngIf="contactForm.get('email')?.errors?.email">Ingresa un correo válido.</span>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Teléfono *</label>
+              <input 
+                type="tel" 
+                id="phone" 
+                formControlName="phone" 
+                [ngClass]="{'is-invalid': isInvalidAndTouched('phone')}"
+                placeholder="+505 1234-5678"
+              >
+              <div class="invalid-feedback" *ngIf="isInvalidAndTouched('phone')">
+                <span *ngIf="contactForm.get('phone')?.errors?.required">El teléfono es requerido.</span>
+                <span *ngIf="contactForm.get('phone')?.errors?.pattern">Ingresa un número de teléfono válido.</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Asunto -->
+          <div class="form-group">
+            <label for="subject">Asunto *</label>
+            <select 
+              id="subject" 
+              formControlName="subject" 
+              [ngClass]="{'is-invalid': isInvalidAndTouched('subject')}"
+            >
+              <option *ngFor="let option of subjects" [value]="option.value">{{ option.label }}</option>
+            </select>
+            <div class="invalid-feedback" *ngIf="isInvalidAndTouched('subject')">
+              <span *ngIf="contactForm.get('subject')?.errors?.required">El asunto es requerido.</span>
+            </div>
+          </div>
+          
+          <!-- Número de rastreo (condicional) -->
+          <div class="form-group" *ngIf="showTrackingField()">
+            <label for="trackingNumber">Número de Rastreo</label>
+            <input 
+              type="text" 
+              id="trackingNumber" 
+              formControlName="trackingNumber" 
+              placeholder="Ej: NE1234567890US"
+            >
+          </div>
+          
+          <!-- Mensaje -->
+          <div class="form-group">
+            <label for="message">Mensaje *</label>
+            <textarea 
+              id="message" 
+              formControlName="message" 
+              [ngClass]="{'is-invalid': isInvalidAndTouched('message')}"
+              rows="5" 
+              placeholder="Escribe tu mensaje aquí..."
+            ></textarea>
+            <div class="invalid-feedback" *ngIf="isInvalidAndTouched('message')">
+              <span *ngIf="contactForm.get('message')?.errors?.required">El mensaje es requerido.</span>
+              <span *ngIf="contactForm.get('message')?.errors?.minlength">El mensaje debe tener al menos 10 caracteres.</span>
+            </div>
+          </div>
+          
+          <!-- Botones -->
+          <div class="form-actions">
+            <button type="submit" class="btn-submit" [disabled]="isLoading">
+              <span *ngIf="!isLoading">Enviar Mensaje</span>
+              <span *ngIf="isLoading">
+                <fa-icon [icon]="['fas', 'spinner']" [spin]="true"></fa-icon> Enviando...
+              </span>
+            </button>
+            <button type="button" class="btn-reset" (click)="resetForm()" [disabled]="isLoading">Limpiar</button>
+          </div>
+        </form>
+      </div>
+      
+      <!-- Información de contacto -->
+      <div class="contact-info-container">
+        <h2>Información de Contacto</h2>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <fa-icon [icon]="['fas', 'envelope']"></fa-icon>
+          </div>
+          <div class="info-content">
+            <h3>Correo Electrónico</h3>
+            <p><a href="mailto:info@nicaexpress.com">info@nicaexpress.com</a></p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <fa-icon [icon]="['fas', 'phone-alt']"></fa-icon>
+          </div>
+          <div class="info-content">
+            <h3>Teléfono</h3>
+            <p>Nicaragua: <a href="tel:+5052222333">+505 2222-3333</a></p>
+            <p>USA: <a href="tel:+13051234567">+1 (305) 123-4567</a></p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <fa-icon [icon]="['fab', 'whatsapp']"></fa-icon>
+          </div>
+          <div class="info-content">
+            <h3>WhatsApp</h3>
+            <p><a href="https://wa.me/13051234567">+1 (305) 123-4567</a></p>
+          </div>
+        </div>
+        
+        <div class="social-networks">
+          <h3>Síguenos en Redes Sociales</h3>
+          <div class="social-links">
+            <a href="#" target="_blank">
+              <fa-icon [icon]="['fab', 'facebook-f']"></fa-icon>
+            </a>
+            <a href="#" target="_blank">
+              <fa-icon [icon]="['fab', 'instagram']"></fa-icon>
+            </a>
+            <a href="#" target="_blank">
+              <fa-icon [icon]="['fab', 'twitter']"></fa-icon>
+            </a>
+            <a href="#" target="_blank">
+              <fa-icon [icon]="['fab', 'youtube']"></fa-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección de Oficinas -->
+<section class="offices-section">
+  <div class="container">
+    <h2 class="section-title">Nuestras Oficinas</h2>
+    
+    <div class="offices-container" *ngFor="let country of offices">
+      <h3 class="country-title">{{ country.country }}</h3>
+      
+      <div class="offices-grid">
+        <div class="office-card" *ngFor="let office of country.locations">
+          <h4>{{ office.name }}</h4>
+          <div class="office-info">
+            <div class="info-row">
+              <fa-icon [icon]="['fas', 'map-marker-alt']"></fa-icon>
+              <span>{{ office.address }}</span>
+            </div>
+            <div class="info-row">
+              <fa-icon [icon]="['fas', 'phone-alt']"></fa-icon>
+              <span>{{ office.phone }}</span>
+            </div>
+            <div class="info-row">
+              <fa-icon [icon]="['fas', 'envelope']"></fa-icon>
+              <span>{{ office.email }}</span>
+            </div>
+            <div class="info-row">
+              <fa-icon [icon]="['fas', 'clock']"></fa-icon>
+              <span>{{ office.hours }}</span>
+            </div>
+          </div>
+          <div class="office-map">
+            <iframe
+              [src]="office.map | safeUrl"
+              width="100%"
+              height="200"
+              style="border:0;"
+              loading="lazy">
+            </iframe>
+          </div>
+          <a [href]="office.map" target="_blank" class="btn-directions">
+            <fa-icon [icon]="['fas', 'directions']"></fa-icon> Cómo Llegar
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

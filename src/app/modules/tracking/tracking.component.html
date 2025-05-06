@@ -1,0 +1,111 @@
+<!-- src/app/modules/tracking/tracking.component.html -->
+<section class="tracking-section">
+  <div class="container">
+    <h1 class="section-title">Rastreo de Paquetes</h1>
+    <p class="section-description">Ingresa tu número de rastreo para conocer el estado de tu envío. Puedes encontrar este número en tu correo de confirmación o en tu cuenta de usuario.</p>
+    
+    <!-- Formulario de rastreo -->
+    <div class="tracking-form-container">
+      <form [formGroup]="trackingForm" (ngSubmit)="searchPackage()">
+        <div class="input-group">
+          <input 
+            type="text" 
+            formControlName="trackingNumber" 
+            placeholder="Ingresa tu número de rastreo"
+            [ngClass]="{'is-invalid': trackingForm.get('trackingNumber')?.invalid && trackingForm.get('trackingNumber')?.touched}"
+          >
+          <button type="submit" class="btn-track" [disabled]="trackingForm.invalid || isLoading">
+            <span *ngIf="!isLoading">Rastrear</span>
+            <span *ngIf="isLoading">
+              <fa-icon [icon]="['fas', 'spinner']" [spin]="true"></fa-icon>
+            </span>
+          </button>
+        </div>
+        <div class="error-message" *ngIf="trackingForm.get('trackingNumber')?.invalid && trackingForm.get('trackingNumber')?.touched">
+          <span *ngIf="trackingForm.get('trackingNumber')?.errors?.required">Por favor ingresa un número de rastreo.</span>
+          <span *ngIf="trackingForm.get('trackingNumber')?.errors?.minlength">El número de rastreo debe tener al menos 6 caracteres.</span>
+        </div>
+      </form>
+    </div>
+    
+    <!-- Resultados de la búsqueda -->
+    <div class="tracking-results" *ngIf="isSearched">
+      
+      <!-- Mensaje de paquete no encontrado -->
+      <div class="package-not-found" *ngIf="!packageFound">
+        <fa-icon [icon]="['fas', 'exclamation-circle']" class="not-found-icon"></fa-icon>
+        <h3>Paquete no encontrado</h3>
+        <p>No hemos podido encontrar ningún paquete con el número de rastreo <strong>{{ trackingNumber }}</strong>. Por favor verifica que el número sea correcto e intenta nuevamente.</p>
+        <button class="btn-primary" (click)="isSearched = false">Buscar otro paquete</button>
+      </div>
+      
+      <!-- Información del paquete encontrado -->
+      <div class="package-found" *ngIf="packageFound">
+        <div class="package-info">
+          <h2>Información del Paquete</h2>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-label">Número de Rastreo:</span>
+              <span class="info-value">{{ packageData.trackingNumber }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Origen:</span>
+              <span class="info-value">{{ packageData.origin }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Destino:</span>
+              <span class="info-value">{{ packageData.destination }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Servicio:</span>
+              <span class="info-value">{{ packageData.service }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Peso:</span>
+              <span class="info-value">{{ packageData.weight }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Dimensiones:</span>
+              <span class="info-value">{{ packageData.dimensions }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Entrega Estimada:</span>
+              <span class="info-value">{{ packageData.estimatedDelivery }}</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Estado:</span>
+              <span class="info-value status">{{ packageData.status }}</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Línea de tiempo del rastreo -->
+        <div class="tracking-timeline">
+          <h2>Estado del Envío</h2>
+          <div class="timeline">
+            <div 
+              class="timeline-item" 
+              *ngFor="let status of trackingStatuses"
+              [ngClass]="{'completed': status.isCompleted, 'active': status.isActive}"
+            >
+              <div class="timeline-marker"></div>
+              <div class="timeline-content">
+                <div class="status-header">
+                  <h4>{{ status.status }}</h4>
+                  <span class="status-date">{{ status.date }}</span>
+                </div>
+                <p class="status-location">{{ status.location }}</p>
+                <p class="status-description">{{ status.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Acción para buscar otro paquete -->
+        <div class="other-actions">
+          <button class="btn-primary" (click)="isSearched = false">Buscar otro paquete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

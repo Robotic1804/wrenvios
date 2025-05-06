@@ -1,0 +1,137 @@
+<!-- src/app/modules/home/home.component.html -->
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container hero-content">
+    <h1>Tu puente entre Estados Unidos y Nicaragua</h1>
+    <p>Compras por encargo y envío de paquetes con entregas rápidas, seguras y al mejor precio del mercado.</p>
+    <div class="hero-buttons">
+      <a routerLink="/calculator" class="btn btn-accent">Cotiza tu Envío</a>
+      <a routerLink="/register" class="btn btn-primary">Regístrate Ahora</a>
+    </div>
+  </div>
+</section>
+
+<!-- Servicios -->
+<section class="services">
+  <div class="container">
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <div class="services-container">
+      <div class="service-card" *ngFor="let service of services">
+        <div class="service-icon">
+          <fa-icon [icon]="['fas', service.icon]"></fa-icon>
+        </div>
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.description }}</p>
+        <a [routerLink]="service.link" class="btn btn-primary">Más Información</a>
+      </div>
+    </div>
+    
+    <!-- Calculadora -->
+    <div class="calculator">
+      <h3>Calcula el Costo de tu Envío</h3>
+      <form class="calculator-form">
+        <div class="form-group">
+          <label for="service">Servicio</label>
+          <select id="service" class="form-control" [(ngModel)]="calculatorForm.service" name="service">
+            <option value="package">Envío de Paquete</option>
+            <option value="shopping">Compra por Encargo</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="origin">Origen</label>
+          <select id="origin" class="form-control" [(ngModel)]="calculatorForm.origin" name="origin">
+            <option value="miami">Miami, FL</option>
+            <option value="newyork">New York, NY</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="destination">Destino</label>
+          <select id="destination" class="form-control" [(ngModel)]="calculatorForm.destination" name="destination">
+            <option value="managua">Managua</option>
+            <option value="leon">León</option>
+            <option value="granada">Granada</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="weight">Peso (lb)</label>
+          <input type="number" id="weight" class="form-control" min="0.1" step="0.1" [(ngModel)]="calculatorForm.weight" name="weight">
+        </div>
+        <button type="button" class="calculator-btn" (click)="calculateShipping()">Calcular Costo</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="how-it-works">
+  <div class="container">
+    <h2 class="section-title">¿Cómo Funciona?</h2>
+    <div class="steps-container">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h4>Regístrate</h4>
+        <p>Crea tu cuenta y obtén tu dirección personal en Miami.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h4>Compra o Envía</h4>
+        <p>Realiza tus compras en tiendas de USA o envía tus paquetes a nuestra dirección.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h4>Notificamos</h4>
+        <p>Te informamos cuando recibimos tu paquete y el costo de envío.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h4>Recibe</h4>
+        <p>Recibe tu paquete en la puerta de tu casa en Nicaragua.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-container">
+      <div class="stat-item" *ngFor="let stat of stats">
+        <div class="stat-number">{{ stat.number }}</div>
+        <div class="stat-text">{{ stat.text }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+  <div class="container">
+    <h2 class="section-title">Lo que Dicen Nuestros Clientes</h2>
+    <div class="testimonials-container">
+      <div class="testimonial" *ngFor="let testimonial of testimonials">
+        <div class="testimonial-text">
+          {{ testimonial.text }}
+        </div>
+        <div class="testimonial-author">
+          <div class="author-avatar">
+            <img [src]="testimonial.avatar" alt="{{ testimonial.author }}">
+          </div>
+          <div>
+            <div class="author-name">{{ testimonial.author }}</div>
+            <div class="author-location">{{ testimonial.location }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <h2>¿Listo para empezar?</h2>
+    <p>Regístrate ahora y obtén tu dirección personal en Estados Unidos. Tu primer envío tiene 15% de descuento.</p>
+    <a routerLink="/register" class="btn btn-accent">Crear Cuenta</a>
+  </div>
+</section>

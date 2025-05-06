@@ -1,0 +1,304 @@
+// src/app/modules/calculator/calculator.component.scss
+
+// Importamos variables
+@import 'src/assets/scss/variables';
+
+.calculator-section {
+  padding: 120px 0 80px;
+  background-color: $light;
+  min-height: 100vh;
+  
+  .section-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: $primary;
+    text-align: center;
+    font-weight: 700;
+  }
+  
+  .section-description {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    color: $dark;
+  }
+}
+
+// Contenedor de la calculadora
+.calculator-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  
+  // Contenedor del formulario
+  .calculator-form-container {
+    width: 58%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    
+    h2 {
+      font-size: 24px;
+      margin-bottom: 25px;
+      color: $primary;
+      font-weight: 700;
+      position: relative;
+      
+      &:after {
+        content: '';
+        width: 50px;
+        height: 3px;
+        background-color: $accent;
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+      }
+    }
+    
+    // Filas del formulario
+    .form-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      
+      &.three-columns {
+        .form-group {
+          width: 31%;
+        }
+      }
+      
+      .form-group {
+        width: 48%;
+        
+        label {
+          display: block;
+          margin-bottom: 8px;
+          font-weight: 500;
+          color: $dark;
+        }
+        
+        .form-control {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          font-size: 16px;
+          transition: border-color 0.3s ease;
+          
+          &:focus {
+            outline: none;
+            border-color: $primary;
+          }
+          
+          &.is-invalid {
+            border-color: $secondary;
+          }
+        }
+        
+        .invalid-feedback {
+          color: $secondary;
+          font-size: 12px;
+          margin-top: 5px;
+        }
+      }
+    }
+    
+    // Checkbox
+    .form-check {
+      margin-bottom: 25px;
+      
+      .form-check-input {
+        margin-right: 10px;
+      }
+      
+      .form-check-label {
+        color: $dark;
+      }
+    }
+    
+    // Botones de acción
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      
+      .btn-calculate, .btn-reset {
+        padding: 12px 20px;
+        border-radius: 5px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        font-size: 16px;
+      }
+      
+      .btn-calculate {
+        background-color: $primary;
+        color: white;
+        flex: 1;
+        margin-right: 10px;
+        
+        &:hover:not(:disabled) {
+          background-color: darken($primary, 5%);
+        }
+        
+        &:disabled {
+          background-color: #aaa;
+          cursor: not-allowed;
+        }
+      }
+      
+      .btn-reset {
+        background-color: #f8f9fa;
+        color: $dark;
+        border: 1px solid #ddd;
+        
+        &:hover:not(:disabled) {
+          background-color: #e9ecef;
+        }
+        
+        &:disabled {
+          color: #aaa;
+          cursor: not-allowed;
+        }
+      }
+    }
+    
+    // Mensaje de error
+    .error-message {
+      margin-top: 20px;
+      color: $secondary;
+      padding: 10px;
+      background-color: rgba($secondary, 0.1);
+      border-radius: 5px;
+      
+      fa-icon {
+        margin-right: 5px;
+      }
+    }
+  }
+  
+  // Resultados del cálculo
+  .calculator-results {
+    width: 38%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    
+    h2 {
+      font-size: 24px;
+      margin-bottom: 25px;
+      color: $primary;
+      font-weight: 700;
+      position: relative;
+      
+      &:after {
+        content: '';
+        width: 50px;
+        height: 3px;
+        background-color: $accent;
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+      }
+    }
+    
+    .results-container {
+      margin-bottom: 30px;
+      
+      .result-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+        
+        &:last-child {
+          border-bottom: none;
+        }
+        
+        .result-label {
+          font-weight: 500;
+          color: $dark;
+        }
+        
+        .result-value {
+          font-weight: 700;
+          color: $primary;
+        }
+        
+        &.total {
+          margin-top: 10px;
+          padding-top: 20px;
+          border-top: 2px solid $primary;
+          font-size: 18px;
+          
+          .result-value {
+            color: $accent;
+            font-size: 24px;
+          }
+        }
+        
+        &.delivery {
+          background-color: rgba($primary, 0.05);
+          padding: 15px;
+          border-radius: 5px;
+          margin-top: 20px;
+        }
+      }
+    }
+    
+    .results-actions {
+      text-align: center;
+      
+      .btn-primary {
+        display: inline-block;
+        background-color: $accent;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 5px;
+        font-weight: 700;
+        font-size: 16px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        
+        &:hover {
+          background-color: darken($accent, 5%);
+        }
+      }
+    }
+  }
+}
+
+// Media queries
+@media (max-width: $breakpoint-lg) {
+  .calculator-container {
+    flex-direction: column;
+    
+    .calculator-form-container,
+    .calculator-results {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .form-row {
+    flex-direction: column;
+    
+    .form-group {
+      width: 100% !important;
+      margin-bottom: 20px;
+    }
+    
+    &.three-columns {
+      .form-group {
+        width: 100% !important;
+      }
+    }
+  }
+}

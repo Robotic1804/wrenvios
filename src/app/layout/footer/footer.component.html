@@ -1,0 +1,73 @@
+<!-- src/app/layout/footer/footer.component.html -->
+<footer>
+  <div class="container">
+    <!-- Sección principal del footer -->
+    <div class="footer-container">
+      <!-- Logo y descripción -->
+      <div class="footer-section about">
+        <h4>NICA<span>EXPRESS</span></h4>
+        <p>Tu conexión confiable entre Estados Unidos y Nicaragua. Ofrecemos servicios de compras por encargo y envío de paquetes con las mejores tarifas del mercado.</p>
+        <div class="social-links">
+          <a *ngFor="let social of socialLinks" [href]="social.url" target="_blank" rel="noopener noreferrer">
+            <fa-icon [icon]="['fab', social.icon]"></fa-icon>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Enlaces de navegación -->
+      <div class="footer-section links">
+        <h4>Navegación</h4>
+        <ul>
+          <li *ngFor="let link of navLinks">
+            <a [routerLink]="link.route">{{ link.text }}</a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Enlaces de servicios -->
+      <div class="footer-section links">
+        <h4>Servicios</h4>
+        <ul>
+          <li *ngFor="let link of serviceLinks">
+            <a [routerLink]="link.route">{{ link.text }}</a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Información de contacto -->
+      <div class="footer-section contact">
+        <h4>Contacto</h4>
+        <p>
+          <fa-icon [icon]="['fas', 'map-marker-alt']"></fa-icon> 
+          <span>Miami: 123 NW 23rd St, Miami, FL 33127</span>
+        </p>
+        <p>
+          <fa-icon [icon]="['fas', 'map-marker-alt']"></fa-icon> 
+          <span>Managua: Centro Comercial Managua, Local 45</span>
+        </p>
+        <p>
+          <fa-icon [icon]="['fas', 'phone-alt']"></fa-icon> 
+          <span>USA: +1 (305) 123-4567</span>
+        </p>
+        <p>
+          <fa-icon [icon]="['fas', 'phone-alt']"></fa-icon> 
+          <span>NIC: +505 2222-3333</span>
+        </p>
+        <p>
+          <fa-icon [icon]="['fas', 'envelope']"></fa-icon> 
+          <span>info@nicaexpress.com</span>
+        </p>
+      </div>
+    </div>
+    
+    <!-- Sección inferior con copyright y enlaces legales -->
+    <div class="footer-bottom">
+      <div class="copyright">
+        &copy; {{ currentYear }} NicaExpress. Todos los derechos reservados.
+      </div>
+      <div class="legal-links">
+        <a *ngFor="let link of legalLinks" [routerLink]="link.route">{{ link.text }}</a>
+      </div>
+    </div>
+  </div>
+</footer>
