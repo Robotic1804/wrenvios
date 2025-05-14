@@ -2,8 +2,8 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './modules/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CalculatorComponent } from './modules/calculator/calculator.component';
-import { AuthGuard } from './core/guards/auth.guard';
-import { AdminGuard } from './core/guards/admin.guard';
+import { authGuard } from './core/guards/auth.guard';
+import { adminGuard } from './core/guards/admin.guard';
 import { ServicesComponent } from './modules/services/services.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HowItWorksComponent } from './modules/how-it-works/how-it-works.component';
@@ -24,14 +24,14 @@ export const routes: Routes = [
   // Rutas de autenticación
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
 
   // Módulo admin con lazy loading
   {
     path: 'admin',
     loadChildren: () =>
       import('./modules/admin/admin.module').then((m) => m.AdminModule),
-    canActivate: [AdminGuard],
+    canActivate: [adminGuard],
   },
 
   // Ruta para 404

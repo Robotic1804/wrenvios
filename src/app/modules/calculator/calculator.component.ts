@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
@@ -8,22 +9,21 @@ import {
   ShippingRate,
 } from '../../core/services/shipping.service';
 import { finalize } from 'rxjs/operators';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faCheckCircle, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-calculator',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule],
-  providers: [ShippingService, ],
+  imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule, HttpClientModule],
+  providers: [],
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.scss',
 })
 export class CalculatorComponent implements OnInit {
-  faSpinner: IconProp = faSpinner;
-  faCheckCircle: IconProp = faCheckCircle;
-  faExclamation: IconProp = faExclamation;
+  faSpinner = faSpinner;
+  faCheckCircle = faCheckCircle;
+  faExclamation = faExclamation;
   // Variables para el formulario
   calculatorForm: FormGroup;
   isLoading = false;

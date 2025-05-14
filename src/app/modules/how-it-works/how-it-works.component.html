@@ -10,14 +10,14 @@
         [ngClass]="{'active': activeSection === 'shopping'}" 
         (click)="setActiveSection('shopping')"
       >
-        <fa-icon [icon]="['fas', 'shopping-cart']"></fa-icon>
+        <fa-icon [icon]="faShoppingCart"></fa-icon>
         Compras por Encargo
       </button>
       <button 
         [ngClass]="{'active': activeSection === 'shipping'}" 
         (click)="setActiveSection('shipping')"
       >
-        <fa-icon [icon]="['fas', 'box']"></fa-icon>
+        <fa-icon [icon]="faBox"></fa-icon>
         Envío de Paquetes
       </button>
     </div>
