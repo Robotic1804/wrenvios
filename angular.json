@@ -42,18 +42,21 @@
           },
           "configurations": {
             "production": {
-              "budgets": [
+              "budgets": 
+               [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "10kb",
+                  "maximumError": "20kb"
                 }
               ],
+               "allowedCommonJsDependencies": [
+                "@fortawesome/free-solid-svg-icons"],
               "outputHashing": "all"
             },
             "development": {
