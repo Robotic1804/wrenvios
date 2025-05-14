@@ -19,7 +19,7 @@
     <div class="services-container">
       <div class="service-card" *ngFor="let service of services">
         <div class="service-icon">
-          <fa-icon [icon]="['fas', service.icon]"></fa-icon>
+          <fa-icon [icon]="service.icon"></fa-icon>
         </div>
         <h3>{{ service.title }}</h3>
         <p>{{ service.description }}</p>

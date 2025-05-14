@@ -11,12 +11,12 @@
         
         <!-- Mensajes de éxito o error -->
         <div class="alert success" *ngIf="formSuccess">
-          <fa-icon [icon]="['fas', 'check-circle']"></fa-icon>
+          <fa-icon [icon]="faCheckCircle"></fa-icon>
           <span>¡Mensaje enviado con éxito! Te responderemos a la brevedad.</span>
         </div>
         
         <div class="alert error" *ngIf="formError">
-          <fa-icon [icon]="['fas', 'exclamation-circle']"></fa-icon>
+          <fa-icon [icon]="faExclamation"></fa-icon>
           <span>{{ errorMessage }}</span>
         </div>
         
@@ -33,8 +33,8 @@
               placeholder="Ingresa tu nombre completo"
             >
             <div class="invalid-feedback" *ngIf="isInvalidAndTouched('name')">
-              <span *ngIf="contactForm.get('name')?.errors?.required">El nombre es requerido.</span>
-              <span *ngIf="contactForm.get('name')?.errors?.minlength">El nombre debe tener al menos 3 caracteres.</span>
+              <span *ngIf="contactForm.get('name')?.errors?.['required']">El nombre es requerido.</span>
+              <span *ngIf="contactForm.get('name')?.errors?.['minlength']">El nombre debe tener al menos 3 caracteres.</span>
             </div>
           </div>
           
@@ -50,8 +50,8 @@
                 placeholder="correo@ejemplo.com"
               >
               <div class="invalid-feedback" *ngIf="isInvalidAndTouched('email')">
-                <span *ngIf="contactForm.get('email')?.errors?.required">El correo es requerido.</span>
-                <span *ngIf="contactForm.get('email')?.errors?.email">Ingresa un correo válido.</span>
+                <span *ngIf="contactForm.get('email')?.errors?.['required']">El correo es requerido.</span>
+                <span *ngIf="contactForm.get('email')?.errors?.['email']">Ingresa un correo válido.</span>
               </div>
             </div>
             
@@ -65,8 +65,8 @@
                 placeholder="+505 1234-5678"
               >
               <div class="invalid-feedback" *ngIf="isInvalidAndTouched('phone')">
-                <span *ngIf="contactForm.get('phone')?.errors?.required">El teléfono es requerido.</span>
-                <span *ngIf="contactForm.get('phone')?.errors?.pattern">Ingresa un número de teléfono válido.</span>
+                <span *ngIf="contactForm.get('phone')?.errors?.['required']">El teléfono es requerido.</span>
+                <span *ngIf="contactForm.get('phone')?.errors?.['pattern']">Ingresa un número de teléfono válido.</span>
               </div>
             </div>
           </div>
@@ -82,7 +82,7 @@
               <option *ngFor="let option of subjects" [value]="option.value">{{ option.label }}</option>
             </select>
             <div class="invalid-feedback" *ngIf="isInvalidAndTouched('subject')">
-              <span *ngIf="contactForm.get('subject')?.errors?.required">El asunto es requerido.</span>
+              <span *ngIf="contactForm.get('subject')?.errors?.['required']">El asunto es requerido.</span>
             </div>
           </div>
           
@@ -108,8 +108,8 @@
               placeholder="Escribe tu mensaje aquí..."
             ></textarea>
             <div class="invalid-feedback" *ngIf="isInvalidAndTouched('message')">
-              <span *ngIf="contactForm.get('message')?.errors?.required">El mensaje es requerido.</span>
-              <span *ngIf="contactForm.get('message')?.errors?.minlength">El mensaje debe tener al menos 10 caracteres.</span>
+              <span *ngIf="contactForm.get('message')?.errors?.['required']">El mensaje es requerido.</span>
+              <span *ngIf="contactForm.get('message')?.errors?.['minlength']">El mensaje debe tener al menos 10 caracteres.</span>
             </div>
           </div>
           
@@ -118,7 +118,7 @@
             <button type="submit" class="btn-submit" [disabled]="isLoading">
               <span *ngIf="!isLoading">Enviar Mensaje</span>
               <span *ngIf="isLoading">
-                <fa-icon [icon]="['fas', 'spinner']" [spin]="true"></fa-icon> Enviando...
+                <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon> Enviando...
               </span>
             </button>
             <button type="button" class="btn-reset" (click)="resetForm()" [disabled]="isLoading">Limpiar</button>
@@ -132,50 +132,42 @@
         
         <div class="info-item">
           <div class="info-icon">
-            <fa-icon [icon]="['fas', 'envelope']"></fa-icon>
+            <fa-icon [icon]="faEnvelope"></fa-icon>
           </div>
           <div class="info-content">
             <h3>Correo Electrónico</h3>
-            <p><a href="mailto:info@nicaexpress.com">info@nicaexpress.com</a></p>
+            <p><a href="mailto:wriossevilla@gmail.com
+">wriossevilla&#64;gmail.com</a></p>
           </div>
         </div>
         
         <div class="info-item">
           <div class="info-icon">
-            <fa-icon [icon]="['fas', 'phone-alt']"></fa-icon>
+            <fa-icon [icon]="faPhone"></fa-icon>
           </div>
           <div class="info-content">
             <h3>Teléfono</h3>
-            <p>Nicaragua: <a href="tel:+5052222333">+505 2222-3333</a></p>
+            <p>Nicaragua: <a href="tel:+5052222333">+505 5812 9621</a></p>
             <p>USA: <a href="tel:+13051234567">+1 (305) 123-4567</a></p>
           </div>
         </div>
         
         <div class="info-item">
           <div class="info-icon">
-            <fa-icon [icon]="['fab', 'whatsapp']"></fa-icon>
+            <fa-icon [icon]="faWhatsapp"></fa-icon>
           </div>
           <div class="info-content">
             <h3>WhatsApp</h3>
-            <p><a href="https://wa.me/13051234567">+1 (305) 123-4567</a></p>
+            <p><a href="https://wa.me/+50558129621">+505 5812 9621</a></p>
           </div>
         </div>
         
         <div class="social-networks">
           <h3>Síguenos en Redes Sociales</h3>
           <div class="social-links">
-            <a href="#" target="_blank">
-              <fa-icon [icon]="['fab', 'facebook-f']"></fa-icon>
-            </a>
-            <a href="#" target="_blank">
-              <fa-icon [icon]="['fab', 'instagram']"></fa-icon>
-            </a>
-            <a href="#" target="_blank">
-              <fa-icon [icon]="['fab', 'twitter']"></fa-icon>
-            </a>
-            <a href="#" target="_blank">
-              <fa-icon [icon]="['fab', 'youtube']"></fa-icon>
-            </a>
+         <a href="https://www.facebook.com/profile.php?id=61553766538623" target="_blank"><fa-icon [icon]="faFacebook"></fa-icon></a>
+            <a href="https://www.instagram.com/wr_envios/?fbclid=IwY2xjawKLjNdleHRuA2FlbQIxMABicmlkETFKOE9mUkNRZWlob3RYQnp4AR66ovTu79-DQqoSbNUAm4vvkHCufyEQnYFV7IiU1TbylQYX15evVNqopQFaPg_aem_fNRiQGEV72YPEKuA7BeXbQ#" target="_blank"><fa-icon [icon]="faInstagram"></fa-icon></a>
+            <a href="#" target="_blank"><fa-icon [icon]="faTwitter"></fa-icon></a>
           </div>
         </div>
       </div>
@@ -196,25 +188,25 @@
           <h4>{{ office.name }}</h4>
           <div class="office-info">
             <div class="info-row">
-              <fa-icon [icon]="['fas', 'map-marker-alt']"></fa-icon>
+              <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
               <span>{{ office.address }}</span>
             </div>
             <div class="info-row">
-              <fa-icon [icon]="['fas', 'phone-alt']"></fa-icon>
+              <fa-icon [icon]="faPhone"></fa-icon>
               <span>{{ office.phone }}</span>
             </div>
             <div class="info-row">
-              <fa-icon [icon]="['fas', 'envelope']"></fa-icon>
+              <fa-icon [icon]="faEnvelope"></fa-icon>
               <span>{{ office.email }}</span>
             </div>
             <div class="info-row">
-              <fa-icon [icon]="['fas', 'clock']"></fa-icon>
+              <fa-icon [icon]="faClock"></fa-icon>
               <span>{{ office.hours }}</span>
             </div>
           </div>
           <div class="office-map">
             <iframe
-              [src]="office.map | safeUrl"
+              [src]="getSafeUrl(office.map)"
               width="100%"
               height="200"
               style="border:0;"
@@ -222,7 +214,7 @@
             </iframe>
           </div>
           <a [href]="office.map" target="_blank" class="btn-directions">
-            <fa-icon [icon]="['fas', 'directions']"></fa-icon> Cómo Llegar
+            <fa-icon [icon]="faDirections"></fa-icon> Cómo Llegar
           </a>
         </div>
       </div>

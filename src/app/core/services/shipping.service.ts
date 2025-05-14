@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, delay, map } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
 
 // Interfaces para el servicio
 export interface ShippingRate {
@@ -48,7 +47,6 @@ export interface TrackingEvent {
   providedIn: 'root',
 })
 export class ShippingService {
-  private apiUrl = environment.apiUrl;
 
   // Mock data para usar mientras no hay backend
   private mockRates: ShippingRate[] = [

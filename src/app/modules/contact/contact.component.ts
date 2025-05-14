@@ -1,19 +1,69 @@
 // src/app/modules/contact/contact.component.ts
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule,  } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPhone, faEnvelope, faMapMarkerAlt, faClock, faDirections } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faExclamation, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faInstagram, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
+
+interface Office {
+  name: string;
+  address: string;
+  phone: string;
+  email: string;
+  hours: string;
+  map: string;
+}
+
+
+interface CountryOffices {
+  country: string;
+  locations: Office[];
+}
+
 
 @Component({
   selector: 'app-contact',
+  standalone: true,
+  imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent implements OnInit {
+  // Iconos de FontAwesome
+  faPhone = faPhone;
+  faEnvelope = faEnvelope;
+  faMapMarkerAlt = faMapMarkerAlt;
+  faFacebook = faFacebook;
+  faInstagram = faInstagram;
+  faTwitter = faTwitter;
+  faClock = faClock;
+  faDirections = faDirections;
+  faWhatsapp = faWhatsapp;
+
+  // Iconos (para autocompletar en TS si quieres)
+  faCheckCircle = faCheckCircle;
+  faExclamation = faExclamation;
+  faSpinner = faSpinner;
+  /// Variables del formulario
   contactForm!: FormGroup;
   isSubmitted = false;
   isLoading = false;
   formSuccess = false;
   formError = false;
   errorMessage = '';
+
+  constructor(private fb: FormBuilder, private sanitizer: DomSanitizer) {
+    this.createForm();
+  }
 
   // Opciones para el formulario
   subjects = [
@@ -23,28 +73,30 @@ export class ContactComponent implements OnInit {
     { value: 'complaint', label: 'Reclamo' },
     { value: 'other', label: 'Otro' },
   ];
+  sanitizedOffices: {
+    name: string;
+    address: string;
+    phone: string;
+    email: string;
+    hours: string;
+    map: string;
+    safeMapUrl: SafeResourceUrl;
+  }[] = [];
 
   // Ubicaciones de oficinas
-  offices = [
+  offices: CountryOffices[] = [
     {
       country: 'Nicaragua',
       locations: [
         {
           name: 'Oficina Managua',
-          address: 'Centro Comercial Managua, Local 45, Managua, Nicaragua',
-          phone: '+505 2222-3333',
-          email: 'managua@nicaexpress.com',
+          address:
+            'Ubicación: De la rotonda el Guegüense 500 mts al Oeste (Colectivo Áres), Managua, Nicaragua',
+          phone: '+505 5812 9621',
+          email: 'wriossevilla@gmail.com',
           hours:
             'Lunes a Viernes: 8:00 AM - 5:00 PM | Sábados: 9:00 AM - 1:00 PM',
-          map: 'https://maps.google.com/maps?q=Centro+Comercial+Managua',
-        },
-        {
-          name: 'Oficina León',
-          address: 'Calle Real, Edificio Torres, 2do Piso, León, Nicaragua',
-          phone: '+505 2311-2222',
-          email: 'leon@nicaexpress.com',
-          hours: 'Lunes a Viernes: 8:00 AM - 5:00 PM',
-          map: 'https://maps.google.com/maps?q=Leon+Nicaragua',
+          map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3591.69014998653!2d-80.23253262426857!3d25.801293508480674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b6a91d4ad8af%3A0x7459ef51f7f881bd!2s123%20NW%2023rd%20St%2C%20Miami%2C%20FL%2033127%2C%20EE.%20UU.!5e0!3m2!1ses!2sni!4v1715626686592!5m2!1ses!2sni',
         },
       ],
     },
@@ -55,20 +107,25 @@ export class ContactComponent implements OnInit {
           name: 'Oficina Miami',
           address: '123 NW 23rd St, Miami, FL 33127, Estados Unidos',
           phone: '+1 (305) 123-4567',
-          email: 'miami@nicaexpress.com',
+          email: 'wriossevilla@gmail.com',
           hours:
             'Lunes a Viernes: 9:00 AM - 6:00 PM | Sábados: 10:00 AM - 2:00 PM',
-          map: 'https://maps.google.com/maps?q=Miami,FL',
+          map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3591.69014998653!2d-80.23253262426857!3d25.801293508480674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b6a91d4ad8af%3A0x7459ef51f7f881bd!2s123%20NW%2023rd%20St%2C%20Miami%2C%20FL%2033127%2C%20EE.%20UU.!5e0!3m2!1ses!2sni!4v1715626686592!5m2!1ses!2sni',
         },
       ],
     },
   ];
 
-  constructor(private fb: FormBuilder) {
-    this.createForm();
+  ngOnInit() {
+    this.contactForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern(/^\+?\d{7,15}$/)]],
+      subject: ['', Validators.required],
+      trackingNumber: [''],
+      message: ['', [Validators.required, Validators.minLength(10)]],
+    });
   }
-
-  ngOnInit(): void {}
 
   // Crea el formulario con validaciones
   createForm(): void {
@@ -85,71 +142,58 @@ export class ContactComponent implements OnInit {
     });
   }
 
-  // Comprueba si un campo es inválido y ha sido tocado
-  isInvalidAndTouched(controlName: string): boolean {
-    const control = this.contactForm.get(controlName);
-    return control
-      ? control.invalid && (control.dirty || control.touched)
-      : false;
+  /** Marca inválidos y touched para mostrar estilos de error */
+  isInvalidAndTouched(field: string): boolean {
+    const ctl = this.contactForm.get(field);
+    return !!(ctl && ctl.invalid && (ctl.touched || ctl.dirty));
   }
 
-  // Envía el formulario de contacto
-  submitForm(): void {
-    this.isSubmitted = true;
-
-    if (this.contactForm.valid) {
-      this.isLoading = true;
-
-      // Aquí iría la lógica para enviar el formulario al servidor
-      // En este caso, simulamos una respuesta del servidor
-      setTimeout(() => {
-        this.isLoading = false;
-
-        // Simulación de éxito (en un caso real, esto dependería de la respuesta del servidor)
-        const success = Math.random() > 0.2; // 80% de probabilidad de éxito
-
-        if (success) {
-          this.formSuccess = true;
-          this.contactForm.reset({
-            subject: 'general',
-          });
-          this.isSubmitted = false;
-        } else {
-          this.formError = true;
-          this.errorMessage =
-            'Hubo un problema al enviar el formulario. Por favor intenta nuevamente.';
-        }
-
-        // Reset después de un tiempo
-        setTimeout(() => {
-          this.formSuccess = false;
-          this.formError = false;
-        }, 5000);
-      }, 1500);
-    } else {
-      // Marca todos los campos como tocados para mostrar errores
-      Object.keys(this.contactForm.controls).forEach((key) => {
-        const control = this.contactForm.get(key);
-        if (control) {
-          control.markAsTouched();
-        }
-      });
-    }
-  }
-
-  // Reset del formulario
-  resetForm(): void {
-    this.contactForm.reset({
-      subject: 'general',
-    });
-    this.isSubmitted = false;
-    this.formSuccess = false;
-    this.formError = false;
-  }
-
-  // Muestra el campo de tracking number solo para ciertos asuntos
+  /** Muestra el campo de rastreo si el asunto es 'tracking' */
   showTrackingField(): boolean {
-    const subject = this.contactForm.get('subject')?.value;
-    return subject === 'tracking' || subject === 'complaint';
+    return this.contactForm.get('subject')?.value === 'tracking';
+  }
+
+  /** Maneja el envío del formulario */
+  submitForm() {
+    if (this.contactForm.invalid) {
+      this.contactForm.markAllAsTouched();
+      return;
+    }
+    this.isLoading = true;
+    this.formError = false;
+    this.formSuccess = false;
+
+    // Simulación de llamada a un API
+    setTimeout(() => {
+      this.isLoading = false;
+      this.formSuccess = true;
+      this.contactForm.reset();
+    }, 2000);
+  }
+
+  /** Limpia formulario y mensajes */
+  resetForm() {
+    this.contactForm.reset();
+    this.formError = false;
+    this.formSuccess = false;
+  }
+
+  /** Sanitiza URLs para iframes */
+  getSafeUrl(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  openDirections(address: string): void {
+    const encodedAddress = encodeURIComponent(address);
+    window.open(
+      `https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`,
+      '_blank'
+    );
   }
 }
+
+    
+
+
+ 
+

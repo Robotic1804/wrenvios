@@ -28,7 +28,7 @@
         <div class="step-number">{{ step.number }}</div>
         <div class="step-content">
           <div class="step-icon">
-            <fa-icon [icon]="['fas', step.icon]"></fa-icon>
+            <fa-icon [icon]="step.icon"></fa-icon>
           </div>
           <h3>{{ step.title }}</h3>
           <p>{{ step.description }}</p>
@@ -51,7 +51,7 @@
         <div class="step-number">{{ step.number }}</div>
         <div class="step-content">
           <div class="step-icon">
-            <fa-icon [icon]="['fas', step.icon]"></fa-icon>
+            <fa-icon [icon]="step.icon"></fa-icon>
           </div>
           <h3>{{ step.title }}</h3>
           <p>{{ step.description }}</p>
@@ -79,7 +79,7 @@
       <div class="faq-item" *ngFor="let faq of faqs; let i = index">
         <div class="faq-question" (click)="faq.isOpen = !faq.isOpen">
           <h3>{{ faq.question }}</h3>
-          <fa-icon [icon]="faq.isOpen ? ['fas', 'minus'] : ['fas', 'plus']"></fa-icon>
+          <fa-icon [icon]="faq.isOpen ? faMinus : faPlus"></fa-icon>
         </div>
         <div class="faq-answer" [ngClass]="{'open': faq.isOpen}">
           <p>{{ faq.answer }}</p>
@@ -97,7 +97,8 @@
     <div class="testimonial-container">
       <div class="testimonial-card" *ngFor="let testimonial of testimonials">
         <div class="testimonial-rating">
-          <fa-icon [icon]="['fas', 'star']" *ngFor="let star of [1,2,3,4,5]" [ngClass]="{'active': star <= testimonial.rating}"></fa-icon>
+ 
+          <fa-icon [icon]="faStarSolid" *ngFor="let star of [1,2,3,4,5]" [ngClass]="{'active': star <= testimonial.rating}"></fa-icon>
         </div>
         <p class="testimonial-comment">{{ testimonial.comment }}</p>
         <div class="testimonial-author">

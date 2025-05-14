@@ -5,11 +5,11 @@
     <div class="footer-container">
       <!-- Logo y descripción -->
       <div class="footer-section about">
-        <h4>NICA<span>EXPRESS</span></h4>
+        <h4>WR<span>ENVIOS</span></h4>
         <p>Tu conexión confiable entre Estados Unidos y Nicaragua. Ofrecemos servicios de compras por encargo y envío de paquetes con las mejores tarifas del mercado.</p>
         <div class="social-links">
           <a *ngFor="let social of socialLinks" [href]="social.url" target="_blank" rel="noopener noreferrer">
-            <fa-icon [icon]="['fab', social.icon]"></fa-icon>
+            <fa-icon [icon]="social.icon"></fa-icon>
           </a>
         </div>
       </div>
@@ -38,24 +38,24 @@
       <div class="footer-section contact">
         <h4>Contacto</h4>
         <p>
-          <fa-icon [icon]="['fas', 'map-marker-alt']"></fa-icon> 
+          <fa-icon [icon]="faMapMarkedAlt"></fa-icon> 
           <span>Miami: 123 NW 23rd St, Miami, FL 33127</span>
         </p>
         <p>
-          <fa-icon [icon]="['fas', 'map-marker-alt']"></fa-icon> 
+          <fa-icon [icon]="faMapMarkedAlt"></fa-icon> 
           <span>Managua: Centro Comercial Managua, Local 45</span>
         </p>
         <p>
-          <fa-icon [icon]="['fas', 'phone-alt']"></fa-icon> 
+          <fa-icon [icon]="faPhone"></fa-icon> 
           <span>USA: +1 (305) 123-4567</span>
         </p>
         <p>
-          <fa-icon [icon]="['fas', 'phone-alt']"></fa-icon> 
+          <fa-icon [icon]="faPhone"></fa-icon> 
           <span>NIC: +505 2222-3333</span>
         </p>
         <p>
-          <fa-icon [icon]="['fas', 'envelope']"></fa-icon> 
-          <span>info@nicaexpress.com</span>
+          <fa-icon [icon]="faEnvelope"></fa-icon> 
+          <span>wriossevilla&#64;gmail.com</span>
         </p>
       </div>
     </div>
@@ -63,7 +63,7 @@
     <!-- Sección inferior con copyright y enlaces legales -->
     <div class="footer-bottom">
       <div class="copyright">
-        &copy; {{ currentYear }} NicaExpress. Todos los derechos reservados.
+        &copy; {{ currentYear }} WRENVIOS. Todos los derechos reservados.
       </div>
       <div class="legal-links">
         <a *ngFor="let link of legalLinks" [routerLink]="link.route">{{ link.text }}</a>

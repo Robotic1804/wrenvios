@@ -10,14 +10,14 @@
         [ngClass]="{'active': activeService === 'shopping'}" 
         (click)="setActiveService('shopping')"
       >
-        <fa-icon [icon]="['fas', 'shopping-cart']"></fa-icon>
+        <fa-icon [icon]="faShoppingBag"></fa-icon>
         Compras por Encargo
       </button>
       <button 
         [ngClass]="{'active': activeService === 'shipping'}" 
         (click)="setActiveService('shipping')"
       >
-        <fa-icon [icon]="['fas', 'box']"></fa-icon>
+        <fa-icon [icon]="faBox"></fa-icon>
         Envío de Paquetes
       </button>
     </div>
@@ -53,7 +53,7 @@
       <div class="benefits-grid">
         <div class="benefit-card" *ngFor="let benefit of shoppingBenefits">
           <div class="benefit-icon">
-            <fa-icon [icon]="['fas', benefit.icon]"></fa-icon>
+            <fa-icon [icon]="getIconByName(benefit.icon)"></fa-icon>
           </div>
           <h3>{{ benefit.title }}</h3>
           <p>{{ benefit.description }}</p>
@@ -77,7 +77,7 @@
       </div>
       
       <div class="stores-note">
-        <p><fa-icon [icon]="['fas', 'info-circle']"></fa-icon> ¿No encuentras tu tienda favorita? No te preocupes, podemos comprar en prácticamente cualquier tienda online de Estados Unidos.</p>
+        <p><fa-icon [icon]="faInfoCircle"></fa-icon> ¿No encuentras tu tienda favorita? No te preocupes, podemos comprar en prácticamente cualquier tienda online de Estados Unidos.</p>
       </div>
     </div>
   </section>
@@ -91,7 +91,7 @@
       <div class="categories-grid">
         <div class="category-card" *ngFor="let category of popularCategories">
           <div class="category-icon">
-            <fa-icon [icon]="['fas', category.icon]"></fa-icon>
+            <fa-icon [icon]="getIconByName(category.icon)"></fa-icon>
           </div>
           <h3>{{ category.name }}</h3>
           <p>{{ category.description }}</p>
@@ -117,7 +117,7 @@
           <div class="pricing-features">
             <ul>
               <li *ngFor="let feature of plan.features">
-                <fa-icon [icon]="['fas', 'check']"></fa-icon>
+                <fa-icon [icon]="faCheck"></fa-icon>
                 {{ feature }}
               </li>
             </ul>
@@ -160,7 +160,7 @@
       <div class="benefits-grid">
         <div class="benefit-card" *ngFor="let benefit of shippingBenefits">
           <div class="benefit-icon">
-            <fa-icon [icon]="['fas', benefit.icon]"></fa-icon>
+            <fa-icon [icon]="getIconByName(benefit.icon)"></fa-icon>
           </div>
           <h3>{{ benefit.title }}</h3>
           <p>{{ benefit.description }}</p>
@@ -177,41 +177,41 @@
       
       <div class="restrictions-grid">
         <div class="restriction-item">
-          <fa-icon [icon]="['fas', 'wine-bottle']"></fa-icon>
+          <fa-icon [icon]="faWineBottle"></fa-icon>
           <span>Líquidos inflamables</span>
         </div>
         <div class="restriction-item">
-          <fa-icon [icon]="['fas', 'pills']"></fa-icon>
+          <fa-icon [icon]="faPills"></fa-icon>
           <span>Medicamentos sin receta</span>
         </div>
         <div class="restriction-item">
-          <fa-icon [icon]="['fas', 'skull-crossbones']"></fa-icon>
+          <fa-icon [icon]="faSkullCrossbones"></fa-icon>
           <span>Materiales peligrosos</span>
         </div>
         <div class="restriction-item">
-          <fa-icon [icon]="['fas', 'paw']"></fa-icon>
+          <fa-icon [icon]="faPaw"></fa-icon>
           <span>Animales vivos</span>
         </div>
         <div class="restriction-item">
-          <fa-icon [icon]="['fas', 'bomb']"></fa-icon>
+          <fa-icon [icon]="faBomb"></fa-icon>
           <span>Explosivos</span>
         </div>
         <div class="restriction-item">
-          <fa-icon [icon]="['fas', 'copy']"></fa-icon>
+          <fa-icon [icon]="faCopy"></fa-icon>
           <span>Productos falsificados</span>
         </div>
         <div class="restriction-item">
-          <fa-icon [icon]="['fas', 'cannabis']"></fa-icon>
+          <fa-icon [icon]="faCannabis"></fa-icon>
           <span>Drogas ilegales</span>
         </div>
         <div class="restriction-item">
-          <fa-icon [icon]="['fas', 'money-bill-wave']"></fa-icon>
+          <fa-icon [icon]="faMoneyBill1Wave"></fa-icon>
           <span>Dinero en efectivo</span>
         </div>
       </div>
       
       <div class="restrictions-note">
-        <p><fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon> Si tienes dudas sobre algún artículo, por favor <a routerLink="/contact">contáctanos</a> antes de enviarlo.</p>
+        <p><fa-icon [icon]="faExclamationTriangle"></fa-icon> Si tienes dudas sobre algún artículo, por favor <a routerLink="/contact">contáctanos</a> antes de enviarlo.</p>
       </div>
     </div>
   </section>
@@ -233,7 +233,7 @@
           <div class="pricing-features">
             <ul>
               <li *ngFor="let feature of plan.features">
-                <fa-icon [icon]="['fas', 'check']"></fa-icon>
+                <fa-icon [icon]="faCheck"></fa-icon>
                 {{ feature }}
               </li>
             </ul>
@@ -241,7 +241,7 @@
           <div class="pricing-action">
             <a routerLink="/register" class="btn-action">Comenzar Ahora</a>
           </div>
-        </div>
+        </div> 
       </div>
       
       <div class="price-calculator">

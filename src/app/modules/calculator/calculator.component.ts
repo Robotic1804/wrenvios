@@ -1,25 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   ShippingService,
   ShippingCalculation,
   ShippingRate,
 } from '../../core/services/shipping.service';
 import { finalize } from 'rxjs/operators';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { faCheckCircle, faExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-calculator',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule],
+  providers: [ShippingService, ],
   templateUrl: './calculator.component.html',
   styleUrl: './calculator.component.scss',
 })
 export class CalculatorComponent implements OnInit {
+  faSpinner: IconProp = faSpinner;
+  faCheckCircle: IconProp = faCheckCircle;
+  faExclamation: IconProp = faExclamation;
+  // Variables para el formulario
   calculatorForm: FormGroup;
   isLoading = false;
   isCalculated = false;
   calculation: ShippingCalculation | null = null;
   errorMessage = '';
+ 
 
   // Opciones para el formulario
   origins = [
@@ -71,7 +82,7 @@ export class CalculatorComponent implements OnInit {
    * Calcula el costo de envío
    */
   calculateShipping(): void {
-    if (this.calculatorForm.valid) {
+    if(this.calculatorForm.valid) {
       this.isLoading = true;
       this.errorMessage = '';
       this.isCalculated = false;

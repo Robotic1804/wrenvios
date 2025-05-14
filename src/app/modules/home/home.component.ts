@@ -1,13 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule, } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faShoppingCart, faBox, } from '@fortawesome/free-solid-svg-icons';
+
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterModule, FormsModule, FontAwesomeModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
+  // icons
+  faShoppingCart = faShoppingCart;
+  faBox = faBox;
+
   // Stats data
   public stats = [
     { number: '15,000+', text: 'Clientes Satisfechos' },
@@ -19,7 +30,7 @@ export class HomeComponent implements OnInit {
   // Testimonials data
   public testimonials = [
     {
-      text: 'NicaExpress ha revolucionado la forma en que hago mis compras. Ahora puedo comprar en cualquier tienda de USA sin preocupaciones.',
+      text: 'WRENVIOS ha revolucionado la forma en que hago mis compras. Ahora puedo comprar en cualquier tienda de USA sin preocupaciones.',
       author: 'María González',
       location: 'Managua, Nicaragua',
       avatar: 'assets/images/avatar1.jpg',
@@ -44,14 +55,14 @@ export class HomeComponent implements OnInit {
       title: 'Compras por Encargo',
       description:
         'Te ayudamos a comprar cualquier producto de tiendas en Estados Unidos y lo enviamos directamente a tu puerta en Nicaragua.',
-      icon: 'shopping-cart',
+      icon: faShoppingCart,
       link: '/services/shopping',
     },
     {
       title: 'Envío de Paquetes',
       description:
         'Recibe tu dirección personal en Miami y envía tus paquetes desde Estados Unidos a Nicaragua con total seguridad.',
-      icon: 'box',
+      icon: faBox,
       link: '/services/shipping',
     },
   ];

@@ -17,13 +17,13 @@
           <button type="submit" class="btn-track" [disabled]="trackingForm.invalid || isLoading">
             <span *ngIf="!isLoading">Rastrear</span>
             <span *ngIf="isLoading">
-              <fa-icon [icon]="['fas', 'spinner']" [spin]="true"></fa-icon>
+              <fa-icon [icon]="faSpinner" class="fa-spin"></fa-icon>
             </span>
           </button>
         </div>
         <div class="error-message" *ngIf="trackingForm.get('trackingNumber')?.invalid && trackingForm.get('trackingNumber')?.touched">
-          <span *ngIf="trackingForm.get('trackingNumber')?.errors?.required">Por favor ingresa un número de rastreo.</span>
-          <span *ngIf="trackingForm.get('trackingNumber')?.errors?.minlength">El número de rastreo debe tener al menos 6 caracteres.</span>
+          <span *ngIf="trackingForm.get('trackingNumber')?.errors?.['required']">Por favor ingresa un número de rastreo.</span>
+          <span *ngIf="trackingForm.get('trackingNumber')?.errors?.['minlength']">El número de rastreo debe tener al menos 6 caracteres.</span>
         </div>
       </form>
     </div>
@@ -33,7 +33,7 @@
       
       <!-- Mensaje de paquete no encontrado -->
       <div class="package-not-found" *ngIf="!packageFound">
-        <fa-icon [icon]="['fas', 'exclamation-circle']" class="not-found-icon"></fa-icon>
+        <fa-icon [icon]="faExclamationCircle" class="not-found-icon"></fa-icon>
         <h3>Paquete no encontrado</h3>
         <p>No hemos podido encontrar ningún paquete con el número de rastreo <strong>{{ trackingNumber }}</strong>. Por favor verifica que el número sea correcto e intenta nuevamente.</p>
         <button class="btn-primary" (click)="isSearched = false">Buscar otro paquete</button>

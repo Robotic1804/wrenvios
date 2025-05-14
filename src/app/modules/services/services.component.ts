@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCreditCard, faShoppingBag, faShieldAlt, faHandHoldingDollar, faHeadset, faTruck, faMapMarkedAlt, faBox, faSearch, faClock, faFileInvoice, faInfoCircle, faWineBottle, faPills, faCheck, faSkullCrossbones, faPaw, faBomb,faCopy, faCannabis, faMoneyBill1Wave, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+
 
 
 
@@ -28,6 +30,53 @@ interface PricingTier {
   styleUrl: './services.component.scss',
 })
 export class ServicesComponent implements OnInit {
+  // Iconos de FontAwesome
+  faCreditCard = faCreditCard;
+  faShoppingBag = faShoppingBag;
+  faShieldAlt = faShieldAlt;
+  faHandHoldingDollar = faHandHoldingDollar;
+  faHeadset = faHeadset;
+  faTruck = faTruck;
+  faMapMarkedAlt = faMapMarkedAlt;
+  faBox = faBox;
+  faSearch = faSearch;
+  faClock = faClock;
+  faFileInvoice = faFileInvoice;
+  faInfoCircle = faInfoCircle;
+  faWineBottle = faWineBottle;
+  faPills = faPills;
+  faCheck = faCheck;
+  faSkullCrossbones = faSkullCrossbones;
+  faPaw = faPaw;
+  faBomb = faBomb;
+  faCopy = faCopy;
+  faCannabis = faCannabis;
+  faMoneyBill1Wave = faMoneyBill1Wave;
+  faExclamationTriangle = faExclamationTriangle;
+  
+
+  getIconByName(iconName: string) {
+    const iconMap: { [key: string]: any } = {
+      'credit-card': this.faCreditCard,
+      'shopping-bag': this.faShoppingBag,
+      'shield-alt': this.faShieldAlt,
+      'hand-holding-usd': this.faHandHoldingDollar,
+      headset: this.faHeadset,
+      truck: this.faTruck,
+      'map-marker-alt': this.faMapMarkedAlt,
+      box: this.faBox,
+      search: this.faSearch,
+      clock: this.faClock,
+      'file-invoice': this.faFileInvoice,
+      'info-circle': this.faInfoCircle,
+      'map-marked-alt': this.faMapMarkedAlt,
+      'wine-bottle': this.faWineBottle,
+      pills: this.faPills,
+    };
+
+    return iconMap[iconName] || this.faSearch; // Icono por defecto si no se encuentra
+  }
+
   activeService: string = 'shopping';
 
   // Beneficios de compras por encargo
@@ -290,14 +339,14 @@ export class ServicesComponent implements OnInit {
   }
 
   // Obtener los beneficios del servicio activo
-  get activeBenefits(): Benefit[] {
+  get activeBenefits():Benefit[] {
     return this.activeService === 'shopping'
       ? this.shoppingBenefits
       : this.shippingBenefits;
   }
 
   // Obtener los precios del servicio activo
-  get activePricing(): PricingTier[] {
+  get activePricing():PricingTier[] {
     return this.activeService === 'shopping'
       ? this.shoppingPricing
       : this.shippingPricing;

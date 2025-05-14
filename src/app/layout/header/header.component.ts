@@ -1,13 +1,22 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faBars, faXmark, faTimes  } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterModule, FontAwesomeModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit {
+  // Iconos de FontAwesome
+  faBars = faBars;
+  faXmark = faXmark;
+  faTimes = faTimes;
+  // Propiedades para el menú móvil y el scroll
   isScrolled = false;
   isMobileMenuOpen = false;
 

@@ -3,12 +3,8 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-
-
-
-
+import { faSpinner, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
 // Interfaz para los estados del paquete
 interface TrackingStatus {
@@ -24,18 +20,51 @@ interface TrackingStatus {
   selector: 'app-tracking',
   standalone: true,
   imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule],
-
   templateUrl: './tracking.component.html',
   styleUrl: './tracking.component.scss',
- 
 })
 export class TrackingComponent implements OnInit {
+  // Iconos de FontAwesome
+  faSpinner = faSpinner;
+  faExclamationCircle = faExclamationCircle;
+  // Variables del formulario
   trackingForm: FormGroup;
   isSearched = false;
   isLoading = false;
   trackingNumber = '';
   packageFound = false;
-  faSpinner = faSpinner;
+  
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private library: FaIconLibrary // importa FaIconLibrary aquí
+  ) {
+    // registra el icono del spinner
+    this.library.addIcons(faSpinner);
+
+    // inicializa tu formGroup EN EL CONSTRUCTOR
+    this.trackingForm = this.fb.group({
+      trackingNumber: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+
+  ngOnInit(): void {}
+
+  searchPackage(): void {
+    if (this.trackingForm.invalid) {
+      return;
+    }
+
+    this.isLoading = true;
+    this.trackingNumber = this.trackingForm.value.trackingNumber;
+
+    setTimeout(() => {
+      this.isLoading = false;
+      this.isSearched = true;
+      this.packageFound = this.trackingNumber === 'NE1234567890US';
+    }, 1500);
+  }
 
   // Datos simulados del paquete
   packageData = {
@@ -100,29 +129,4 @@ export class TrackingComponent implements OnInit {
       isActive: false,
     },
   ];
-
-  constructor(private fb: FormBuilder) {
-    this.trackingForm = this.fb.group({
-      trackingNumber: ['', [Validators.required, Validators.minLength(6)]],
-    });
-  }
-
-  ngOnInit(): void {}
-
-  // Método para realizar la búsqueda del paquete
-  searchPackage(): void {
-    if (this.trackingForm.valid) {
-      this.isLoading = true;
-      this.trackingNumber = this.trackingForm.get('trackingNumber')?.value;
-
-      // Simulamos una llamada a API con setTimeout
-      setTimeout(() => {
-        this.isLoading = false;
-        this.isSearched = true;
-
-        // Simulamos que encontramos el paquete si el número de tracking coincide
-        this.packageFound = this.trackingNumber === 'NE1234567890US';
-      }, 1500);
-    }
-  }
 }
