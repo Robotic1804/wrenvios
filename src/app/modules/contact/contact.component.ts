@@ -31,11 +31,10 @@ interface CountryOffices {
 
 
 @Component({
-  selector: 'app-contact',
-  standalone: true,
-  imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule],
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss'],
+    selector: 'app-contact',
+    imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule],
+    templateUrl: './contact.component.html',
+    styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
   // Iconos de FontAwesome

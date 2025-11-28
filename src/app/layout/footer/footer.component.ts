@@ -13,11 +13,10 @@ interface SocialLink {
 }
 
 @Component({
-  selector: 'app-footer',
-  standalone: true,
-  imports: [CommonModule, RouterModule, FontAwesomeModule],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss',
+    selector: 'app-footer',
+    imports: [CommonModule, RouterModule, FontAwesomeModule],
+    templateUrl: './footer.component.html',
+    styleUrl: './footer.component.scss'
 })
 export class FooterComponent implements OnInit {
   // Iconos de FontAwesome

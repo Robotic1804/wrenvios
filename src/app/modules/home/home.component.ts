@@ -8,11 +8,10 @@ import { faShoppingCart, faBox, } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, FontAwesomeModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+    selector: 'app-home',
+    imports: [CommonModule, RouterModule, FormsModule, FontAwesomeModule],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
   // icons

@@ -13,12 +13,11 @@ import { faCheckCircle, faExclamation } from '@fortawesome/free-solid-svg-icons'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-calculator',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule, HttpClientModule],
-  providers: [],
-  templateUrl: './calculator.component.html',
-  styleUrl: './calculator.component.scss',
+    selector: 'app-calculator',
+    imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule, HttpClientModule],
+    providers: [],
+    templateUrl: './calculator.component.html',
+    styleUrl: './calculator.component.scss'
 })
 export class CalculatorComponent implements OnInit {
   faSpinner = faSpinner;

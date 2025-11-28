@@ -17,11 +17,10 @@ interface TrackingStatus {
 }
 
 @Component({
-  selector: 'app-tracking',
-  standalone: true,
-  imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule],
-  templateUrl: './tracking.component.html',
-  styleUrl: './tracking.component.scss',
+    selector: 'app-tracking',
+    imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule],
+    templateUrl: './tracking.component.html',
+    styleUrl: './tracking.component.scss'
 })
 export class TrackingComponent implements OnInit {
   // Iconos de FontAwesome

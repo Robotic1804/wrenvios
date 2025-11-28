@@ -20,11 +20,10 @@ interface FAQ {
 }
 
 @Component({
-  selector: 'app-how-it-works',
-  standalone: true,
-  imports: [CommonModule, FontAwesomeModule],
-  templateUrl: './how-it-works.component.html',
-  styleUrl: './how-it-works.component.scss',
+    selector: 'app-how-it-works',
+    imports: [CommonModule, FontAwesomeModule],
+    templateUrl: './how-it-works.component.html',
+    styleUrl: './how-it-works.component.scss'
 })
 export class HowItWorksComponent implements OnInit {
   // Iconos

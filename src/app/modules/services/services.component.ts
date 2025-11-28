@@ -23,11 +23,10 @@ interface PricingTier {
 
 
 @Component({
-  selector: 'app-services',
-  standalone: true,
-  imports: [CommonModule, FontAwesomeModule],
-  templateUrl: './services.component.html',
-  styleUrl: './services.component.scss',
+    selector: 'app-services',
+    imports: [CommonModule, FontAwesomeModule],
+    templateUrl: './services.component.html',
+    styleUrl: './services.component.scss'
 })
 export class ServicesComponent implements OnInit {
   // Iconos de FontAwesome
