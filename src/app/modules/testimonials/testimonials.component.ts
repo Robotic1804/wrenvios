@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 
@@ -13,7 +12,7 @@ export interface Testimonial {
 
 @Component({
     selector: 'app-testimonials',
-    imports: [CommonModule, RouterModule],
+    imports: [RouterModule],
     templateUrl: './testimonials.component.html',
     styleUrl: './testimonials.component.scss'
 })

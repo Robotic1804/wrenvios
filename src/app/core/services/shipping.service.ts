@@ -1,7 +1,8 @@
 // src/app/core/services/shipping.service.ts
+import type { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import type { Observable} from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { catchError, delay, map } from 'rxjs/operators';
 
 // Interfaces para el servicio
@@ -155,7 +156,7 @@ export class ShippingService {
       delay(1000),
       map((rates) => {
         // Buscar la tarifa correspondiente
-        let rate = rates.find(
+        const rate = rates.find(
           (r) =>
             r.origin === origin &&
             r.destination === destination &&

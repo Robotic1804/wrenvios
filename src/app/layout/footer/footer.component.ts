@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import type { OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faFacebook, faInstagram, faTwitter, faYoutube, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faPhone, faMapMarkedAlt } from '@fortawesome/free-solid-svg-icons';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 
 interface SocialLink {
@@ -14,7 +14,7 @@ interface SocialLink {
 
 @Component({
     selector: 'app-footer',
-    imports: [CommonModule, RouterModule, FontAwesomeModule],
+    imports: [RouterModule, FontAwesomeModule],
     templateUrl: './footer.component.html',
     styleUrl: './footer.component.scss'
 })

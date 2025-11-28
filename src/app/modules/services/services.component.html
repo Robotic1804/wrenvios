@@ -3,20 +3,20 @@
   <div class="container">
     <h1 class="section-title">Nuestros Servicios</h1>
     <p class="section-description">Soluciones completas para tus necesidades de compras y envíos entre Estados Unidos y Nicaragua.</p>
-    
+
     <!-- Selector de servicio -->
     <div class="service-selector">
-      <button 
-        [ngClass]="{'active': activeService === 'shopping'}" 
+      <button
+        [ngClass]="{'active': activeService === 'shopping'}"
         (click)="setActiveService('shopping')"
-      >
+        >
         <fa-icon [icon]="faShoppingBag"></fa-icon>
         Compras por Encargo
       </button>
-      <button 
-        [ngClass]="{'active': activeService === 'shipping'}" 
+      <button
+        [ngClass]="{'active': activeService === 'shipping'}"
         (click)="setActiveService('shipping')"
-      >
+        >
         <fa-icon [icon]="faBox"></fa-icon>
         Envío de Paquetes
       </button>
@@ -25,233 +25,242 @@
 </section>
 
 <!-- Compras por Encargo -->
-<div *ngIf="activeService === 'shopping'">
-  <!-- Descripción del servicio -->
-  <section class="service-description">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <h2>Compras por Encargo</h2>
-          <p class="lead">Te ayudamos a comprar cualquier producto de tiendas en Estados Unidos y lo enviamos directamente a tu puerta en Nicaragua.</p>
-          <p>Con nuestro servicio de compras por encargo, puedes acceder a miles de productos que no están disponibles en Nicaragua o que tienen precios mucho más elevados localmente. Nuestro equipo se encarga de todo el proceso, desde la búsqueda del producto hasta la entrega en tu domicilio.</p>
-          <p>¡Olvídate de las complicaciones! No necesitas tarjeta de crédito internacional, ni dirección en Estados Unidos, ni conocimientos de inglés para comprar. Nosotros nos encargamos de todo.</p>
-          <a routerLink="/calculator" class="btn-primary">Calcular Costo</a>
-        </div>
-        <div class="col-md-6">
-          <div class="service-image">
-            <img src="assets/images/shopping-service.jpg" alt="Compras por Encargo">
+@if (activeService === 'shopping') {
+  <div>
+    <!-- Descripción del servicio -->
+    <section class="service-description">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Compras por Encargo</h2>
+            <p class="lead">Te ayudamos a comprar cualquier producto de tiendas en Estados Unidos y lo enviamos directamente a tu puerta en Nicaragua.</p>
+            <p>Con nuestro servicio de compras por encargo, puedes acceder a miles de productos que no están disponibles en Nicaragua o que tienen precios mucho más elevados localmente. Nuestro equipo se encarga de todo el proceso, desde la búsqueda del producto hasta la entrega en tu domicilio.</p>
+            <p>¡Olvídate de las complicaciones! No necesitas tarjeta de crédito internacional, ni dirección en Estados Unidos, ni conocimientos de inglés para comprar. Nosotros nos encargamos de todo.</p>
+            <a routerLink="/calculator" class="btn-primary">Calcular Costo</a>
+          </div>
+          <div class="col-md-6">
+            <div class="service-image">
+              <img src="assets/images/shopping-service.jpg" alt="Compras por Encargo">
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  
-  <!-- Beneficios -->
-  <section class="benefits-section">
-    <div class="container">
-      <h2 class="section-title">Beneficios de Comprar con Nosotros</h2>
-      <div class="benefits-grid">
-        <div class="benefit-card" *ngFor="let benefit of shoppingBenefits">
-          <div class="benefit-icon">
-            <fa-icon [icon]="getIconByName(benefit.icon)"></fa-icon>
-          </div>
-          <h3>{{ benefit.title }}</h3>
-          <p>{{ benefit.description }}</p>
+    </section>
+    <!-- Beneficios -->
+    <section class="benefits-section">
+      <div class="container">
+        <h2 class="section-title">Beneficios de Comprar con Nosotros</h2>
+        <div class="benefits-grid">
+          @for (benefit of shoppingBenefits; track benefit) {
+            <div class="benefit-card">
+              <div class="benefit-icon">
+                <fa-icon [icon]="getIconByName(benefit.icon)"></fa-icon>
+              </div>
+              <h3>{{ benefit.title }}</h3>
+              <p>{{ benefit.description }}</p>
+            </div>
+          }
         </div>
       </div>
-    </div>
-  </section>
-  
-  <!-- Tiendas populares -->
-  <section class="stores-section">
-    <div class="container">
-      <h2 class="section-title">Tiendas Populares</h2>
-      <p class="section-description">Podemos comprar en cualquier tienda online de Estados Unidos. Estas son algunas de las más populares entre nuestros clientes:</p>
-      
-      <div class="stores-grid">
-        <div class="store-card" *ngFor="let store of popularStores">
-          <a [href]="store.url" target="_blank" rel="noopener noreferrer">
-            <img [src]="store.logo" [alt]="store.name">
-          </a>
+    </section>
+    <!-- Tiendas populares -->
+    <section class="stores-section">
+      <div class="container">
+        <h2 class="section-title">Tiendas Populares</h2>
+        <p class="section-description">Podemos comprar en cualquier tienda online de Estados Unidos. Estas son algunas de las más populares entre nuestros clientes:</p>
+        <div class="stores-grid">
+          @for (store of popularStores; track store) {
+            <div class="store-card">
+              <a [href]="store.url" target="_blank" rel="noopener noreferrer">
+                <img [src]="store.logo" [alt]="store.name">
+              </a>
+            </div>
+          }
+        </div>
+        <div class="stores-note">
+          <p><fa-icon [icon]="faInfoCircle"></fa-icon> ¿No encuentras tu tienda favorita? No te preocupes, podemos comprar en prácticamente cualquier tienda online de Estados Unidos.</p>
         </div>
       </div>
-      
-      <div class="stores-note">
-        <p><fa-icon [icon]="faInfoCircle"></fa-icon> ¿No encuentras tu tienda favorita? No te preocupes, podemos comprar en prácticamente cualquier tienda online de Estados Unidos.</p>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Categorías populares -->
-  <section class="categories-section">
-    <div class="container">
-      <h2 class="section-title">Categorías Populares</h2>
-      <p class="section-description">Estos son los productos más solicitados por nuestros clientes:</p>
-      
-      <div class="categories-grid">
-        <div class="category-card" *ngFor="let category of popularCategories">
-          <div class="category-icon">
-            <fa-icon [icon]="getIconByName(category.icon)"></fa-icon>
-          </div>
-          <h3>{{ category.name }}</h3>
-          <p>{{ category.description }}</p>
+    </section>
+    <!-- Categorías populares -->
+    <section class="categories-section">
+      <div class="container">
+        <h2 class="section-title">Categorías Populares</h2>
+        <p class="section-description">Estos son los productos más solicitados por nuestros clientes:</p>
+        <div class="categories-grid">
+          @for (category of popularCategories; track category) {
+            <div class="category-card">
+              <div class="category-icon">
+                <fa-icon [icon]="getIconByName(category.icon)"></fa-icon>
+              </div>
+              <h3>{{ category.name }}</h3>
+              <p>{{ category.description }}</p>
+            </div>
+          }
         </div>
       </div>
-    </div>
-  </section>
-  
-  <!-- Precios -->
-  <section class="pricing-section">
-    <div class="container">
-      <h2 class="section-title">Nuestros Planes</h2>
-      <p class="section-description">Elige el plan que mejor se adapte a tus necesidades:</p>
-      
-      <div class="pricing-grid">
-        <div class="pricing-card" *ngFor="let plan of shoppingPricing" [ngClass]="{'recommended': plan.recommended}">
-          <div class="pricing-header">
-            <h3>{{ plan.name }}</h3>
-            <div class="pricing-price">{{ plan.price }}</div>
-            <p>{{ plan.description }}</p>
-            <div class="recommended-badge" *ngIf="plan.recommended">Recomendado</div>
-          </div>
-          <div class="pricing-features">
-            <ul>
-              <li *ngFor="let feature of plan.features">
-                <fa-icon [icon]="faCheck"></fa-icon>
-                {{ feature }}
-              </li>
-            </ul>
-          </div>
-          <div class="pricing-action">
-            <a routerLink="/register" class="btn-action">Comenzar Ahora</a>
-          </div>
+    </section>
+    <!-- Precios -->
+    <section class="pricing-section">
+      <div class="container">
+        <h2 class="section-title">Nuestros Planes</h2>
+        <p class="section-description">Elige el plan que mejor se adapte a tus necesidades:</p>
+        <div class="pricing-grid">
+          @for (plan of shoppingPricing; track plan) {
+            <div class="pricing-card" [ngClass]="{'recommended': plan.recommended}">
+              <div class="pricing-header">
+                <h3>{{ plan.name }}</h3>
+                <div class="pricing-price">{{ plan.price }}</div>
+                <p>{{ plan.description }}</p>
+                @if (plan.recommended) {
+                  <div class="recommended-badge">Recomendado</div>
+                }
+              </div>
+              <div class="pricing-features">
+                <ul>
+                  @for (feature of plan.features; track feature) {
+                    <li>
+                      <fa-icon [icon]="faCheck"></fa-icon>
+                      {{ feature }}
+                    </li>
+                  }
+                </ul>
+              </div>
+              <div class="pricing-action">
+                <a routerLink="/register" class="btn-action">Comenzar Ahora</a>
+              </div>
+            </div>
+          }
         </div>
       </div>
-    </div>
-  </section>
-</div>
+    </section>
+  </div>
+}
 
 <!-- Envío de Paquetes -->
-<div *ngIf="activeService === 'shipping'">
-  <!-- Descripción del servicio -->
-  <section class="service-description">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <h2>Envío de Paquetes</h2>
-          <p class="lead">Recibe tu dirección personal en Miami y envía tus paquetes desde Estados Unidos a Nicaragua con total seguridad.</p>
-          <p>Con nuestro servicio de envío de paquetes, obtienes una dirección física en Miami donde puedes recibir tus compras de cualquier tienda de Estados Unidos. Nosotros nos encargamos de recibir tus paquetes, procesarlos y enviarlos a Nicaragua de manera segura y eficiente.</p>
-          <p>Además, ofrecemos servicios de consolidación para que puedas ahorrar en costos de envío al agrupar varios paquetes en uno solo. ¡Ahorra tiempo y dinero con nuestro servicio de envíos!</p>
-          <a routerLink="/calculator" class="btn-primary">Calcular Costo</a>
-        </div>
-        <div class="col-md-6">
-          <div class="service-image">
-            <img src="assets/images/shipping-service.jpg" alt="Envío de Paquetes">
+@if (activeService === 'shipping') {
+  <div>
+    <!-- Descripción del servicio -->
+    <section class="service-description">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Envío de Paquetes</h2>
+            <p class="lead">Recibe tu dirección personal en Miami y envía tus paquetes desde Estados Unidos a Nicaragua con total seguridad.</p>
+            <p>Con nuestro servicio de envío de paquetes, obtienes una dirección física en Miami donde puedes recibir tus compras de cualquier tienda de Estados Unidos. Nosotros nos encargamos de recibir tus paquetes, procesarlos y enviarlos a Nicaragua de manera segura y eficiente.</p>
+            <p>Además, ofrecemos servicios de consolidación para que puedas ahorrar en costos de envío al agrupar varios paquetes en uno solo. ¡Ahorra tiempo y dinero con nuestro servicio de envíos!</p>
+            <a routerLink="/calculator" class="btn-primary">Calcular Costo</a>
+          </div>
+          <div class="col-md-6">
+            <div class="service-image">
+              <img src="assets/images/shipping-service.jpg" alt="Envío de Paquetes">
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  
-  <!-- Beneficios -->
-  <section class="benefits-section">
-    <div class="container">
-      <h2 class="section-title">Beneficios de Enviar con Nosotros</h2>
-      <div class="benefits-grid">
-        <div class="benefit-card" *ngFor="let benefit of shippingBenefits">
-          <div class="benefit-icon">
-            <fa-icon [icon]="getIconByName(benefit.icon)"></fa-icon>
+    </section>
+    <!-- Beneficios -->
+    <section class="benefits-section">
+      <div class="container">
+        <h2 class="section-title">Beneficios de Enviar con Nosotros</h2>
+        <div class="benefits-grid">
+          @for (benefit of shippingBenefits; track benefit) {
+            <div class="benefit-card">
+              <div class="benefit-icon">
+                <fa-icon [icon]="getIconByName(benefit.icon)"></fa-icon>
+              </div>
+              <h3>{{ benefit.title }}</h3>
+              <p>{{ benefit.description }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+    <!-- Restricciones -->
+    <section class="restrictions-section">
+      <div class="container">
+        <h2 class="section-title">Artículos Restringidos</h2>
+        <p class="section-description">Por regulaciones aduaneras y de transporte, no podemos enviar los siguientes artículos:</p>
+        <div class="restrictions-grid">
+          <div class="restriction-item">
+            <fa-icon [icon]="faWineBottle"></fa-icon>
+            <span>Líquidos inflamables</span>
           </div>
-          <h3>{{ benefit.title }}</h3>
-          <p>{{ benefit.description }}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Restricciones -->
-  <section class="restrictions-section">
-    <div class="container">
-      <h2 class="section-title">Artículos Restringidos</h2>
-      <p class="section-description">Por regulaciones aduaneras y de transporte, no podemos enviar los siguientes artículos:</p>
-      
-      <div class="restrictions-grid">
-        <div class="restriction-item">
-          <fa-icon [icon]="faWineBottle"></fa-icon>
-          <span>Líquidos inflamables</span>
-        </div>
-        <div class="restriction-item">
-          <fa-icon [icon]="faPills"></fa-icon>
-          <span>Medicamentos sin receta</span>
-        </div>
-        <div class="restriction-item">
-          <fa-icon [icon]="faSkullCrossbones"></fa-icon>
-          <span>Materiales peligrosos</span>
-        </div>
-        <div class="restriction-item">
-          <fa-icon [icon]="faPaw"></fa-icon>
-          <span>Animales vivos</span>
-        </div>
-        <div class="restriction-item">
-          <fa-icon [icon]="faBomb"></fa-icon>
-          <span>Explosivos</span>
-        </div>
-        <div class="restriction-item">
-          <fa-icon [icon]="faCopy"></fa-icon>
-          <span>Productos falsificados</span>
-        </div>
-        <div class="restriction-item">
-          <fa-icon [icon]="faCannabis"></fa-icon>
-          <span>Drogas ilegales</span>
-        </div>
-        <div class="restriction-item">
-          <fa-icon [icon]="faMoneyBill1Wave"></fa-icon>
-          <span>Dinero en efectivo</span>
-        </div>
-      </div>
-      
-      <div class="restrictions-note">
-        <p><fa-icon [icon]="faExclamationTriangle"></fa-icon> Si tienes dudas sobre algún artículo, por favor <a routerLink="/contact">contáctanos</a> antes de enviarlo.</p>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Precios -->
-  <section class="pricing-section">
-    <div class="container">
-      <h2 class="section-title">Nuestras Tarifas</h2>
-      <p class="section-description">Envía tus paquetes con las mejores tarifas del mercado:</p>
-      
-      <div class="pricing-grid">
-        <div class="pricing-card" *ngFor="let plan of shippingPricing" [ngClass]="{'recommended': plan.recommended}">
-          <div class="pricing-header">
-            <h3>{{ plan.name }}</h3>
-            <div class="pricing-price">{{ plan.price }}</div>
-            <p>{{ plan.description }}</p>
-            <div class="recommended-badge" *ngIf="plan.recommended">Recomendado</div>
+          <div class="restriction-item">
+            <fa-icon [icon]="faPills"></fa-icon>
+            <span>Medicamentos sin receta</span>
           </div>
-          <div class="pricing-features">
-            <ul>
-              <li *ngFor="let feature of plan.features">
-                <fa-icon [icon]="faCheck"></fa-icon>
-                {{ feature }}
-              </li>
-            </ul>
+          <div class="restriction-item">
+            <fa-icon [icon]="faSkullCrossbones"></fa-icon>
+            <span>Materiales peligrosos</span>
           </div>
-          <div class="pricing-action">
-            <a routerLink="/register" class="btn-action">Comenzar Ahora</a>
+          <div class="restriction-item">
+            <fa-icon [icon]="faPaw"></fa-icon>
+            <span>Animales vivos</span>
           </div>
-        </div> 
+          <div class="restriction-item">
+            <fa-icon [icon]="faBomb"></fa-icon>
+            <span>Explosivos</span>
+          </div>
+          <div class="restriction-item">
+            <fa-icon [icon]="faCopy"></fa-icon>
+            <span>Productos falsificados</span>
+          </div>
+          <div class="restriction-item">
+            <fa-icon [icon]="faCannabis"></fa-icon>
+            <span>Drogas ilegales</span>
+          </div>
+          <div class="restriction-item">
+            <fa-icon [icon]="faMoneyBill1Wave"></fa-icon>
+            <span>Dinero en efectivo</span>
+          </div>
+        </div>
+        <div class="restrictions-note">
+          <p><fa-icon [icon]="faExclamationTriangle"></fa-icon> Si tienes dudas sobre algún artículo, por favor <a routerLink="/contact">contáctanos</a> antes de enviarlo.</p>
+        </div>
       </div>
-      
-      <div class="price-calculator">
-        <h3>¿Quieres saber el costo exacto de tu envío?</h3>
-        <p>Utiliza nuestra calculadora para obtener una cotización precisa basada en el peso y dimensiones de tu paquete.</p>
-        <a routerLink="/calculator" class="btn-secondary">Ir a la Calculadora</a>
+    </section>
+    <!-- Precios -->
+    <section class="pricing-section">
+      <div class="container">
+        <h2 class="section-title">Nuestras Tarifas</h2>
+        <p class="section-description">Envía tus paquetes con las mejores tarifas del mercado:</p>
+        <div class="pricing-grid">
+          @for (plan of shippingPricing; track plan) {
+            <div class="pricing-card" [ngClass]="{'recommended': plan.recommended}">
+              <div class="pricing-header">
+                <h3>{{ plan.name }}</h3>
+                <div class="pricing-price">{{ plan.price }}</div>
+                <p>{{ plan.description }}</p>
+                @if (plan.recommended) {
+                  <div class="recommended-badge">Recomendado</div>
+                }
+              </div>
+              <div class="pricing-features">
+                <ul>
+                  @for (feature of plan.features; track feature) {
+                    <li>
+                      <fa-icon [icon]="faCheck"></fa-icon>
+                      {{ feature }}
+                    </li>
+                  }
+                </ul>
+              </div>
+              <div class="pricing-action">
+                <a routerLink="/register" class="btn-action">Comenzar Ahora</a>
+              </div>
+            </div>
+          }
+        </div>
+        <div class="price-calculator">
+          <h3>¿Quieres saber el costo exacto de tu envío?</h3>
+          <p>Utiliza nuestra calculadora para obtener una cotización precisa basada en el peso y dimensiones de tu paquete.</p>
+          <a routerLink="/calculator" class="btn-secondary">Ir a la Calculadora</a>
+        </div>
       </div>
-    </div>
-  </section>
-</div>
+    </section>
+  </div>
+}
 
 <!-- Llamada a la acción -->
 <section class="cta-section">

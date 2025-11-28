@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { Component } from '@angular/core';
+import type { OnInit } from '@angular/core';
+import type { FormBuilder} from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  ShippingService,
-  ShippingCalculation,
-  ShippingRate,
-} from '../../core/services/shipping.service';
-import { finalize } from 'rxjs/operators';
 import { faCheckCircle, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { finalize } from 'rxjs/operators';
+import type {
+  ShippingCalculation,
+  ShippingService,
+} from '../../core/services/shipping.service';
 
 @Component({
     selector: 'app-calculator',

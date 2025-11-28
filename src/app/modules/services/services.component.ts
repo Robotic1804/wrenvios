@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import type { OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import type { ActivatedRoute } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCreditCard, faShoppingBag, faShieldAlt, faHandHoldingDollar, faHeadset, faTruck, faMapMarkedAlt, faBox, faSearch, faClock, faFileInvoice, faInfoCircle, faWineBottle, faPills, faCheck, faSkullCrossbones, faPaw, faBomb,faCopy, faCannabis, faMoneyBill1Wave, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
@@ -76,7 +77,7 @@ export class ServicesComponent implements OnInit {
     return iconMap[iconName] || this.faSearch; // Icono por defecto si no se encuentra
   }
 
-  activeService: string = 'shopping';
+  activeService = 'shopping';
 
   // Beneficios de compras por encargo
   shoppingBenefits: Benefit[] = [

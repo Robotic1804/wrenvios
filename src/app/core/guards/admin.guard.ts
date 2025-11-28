@@ -1,17 +1,16 @@
-// admin.guard.ts
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 export const adminGuard = () => {
-  const router = inject(Router);
+  const _router = inject(Router);
 
-  // Por ahora, simplemente devolvemos true para permitir el acceso
-  // Más tarde implementarás la lógica real de autenticación
+  // For now, simply return true to allow access
+  // Later you will implement the real authentication logic
   return true;
 
-  // Código que añadirás más tarde:
+  // Code to add later:
   // if (authService.isAuthenticated() && authService.isAdmin()) {
   //   return true;
   // }
-  // return router.parseUrl('/access-denied');
+  // return _router.parseUrl('/access-denied');
 };

@@ -5,38 +5,42 @@
     <div class="logo">
       <a routerLink="/">WR<span>ENVIOS</span></a>
     </div>
-    
+
     <!-- Navegación Desktop -->
     <nav class="desktop-nav">
       <ul>
-        <li *ngFor="let link of menuLinks">
-          <a [routerLink]="link.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: link.route === '/'}">
-            {{ link.text }}
-          </a>
-        </li>
+        @for (link of menuLinks; track link) {
+          <li>
+            <a [routerLink]="link.route" routerLinkActive="active" [routerLinkActiveOptions]="{exact: link.route === '/'}">
+              {{ link.text }}
+            </a>
+          </li>
+        }
       </ul>
     </nav>
-    
+
     <!-- Botones de Acción -->
     <div class="nav-buttons">
       <a routerLink="/login" class="btn btn-primary">Iniciar Sesión</a>
       <a routerLink="/register" class="btn btn-accent">Registrarse</a>
     </div>
-    
+
     <!-- Botón de Menú Móvil -->
     <div class="mobile-menu-button" (click)="toggleMobileMenu()">
       <fa-icon [icon]="isMobileMenuOpen ? faTimes : faBars"></fa-icon>
     </div>
   </div>
-  
+
   <!-- Menú Móvil -->
   <div class="mobile-menu" [ngClass]="{'open': isMobileMenuOpen}">
     <ul>
-      <li *ngFor="let link of menuLinks">
-        <a [routerLink]="link.route" routerLinkActive="active" (click)="toggleMobileMenu()">
-          {{ link.text }}
-        </a>
-      </li>
+      @for (link of menuLinks; track link) {
+        <li>
+          <a [routerLink]="link.route" routerLinkActive="active" (click)="toggleMobileMenu()">
+            {{ link.text }}
+          </a>
+        </li>
+      }
       <li>
         <a routerLink="/login" (click)="toggleMobileMenu()">Iniciar Sesión</a>
       </li>

@@ -3,170 +3,220 @@
   <div class="container">
     <h1 class="section-title">Calculadora de Envíos</h1>
     <p class="section-description">Calcula el costo de tu envío desde Estados Unidos a Nicaragua con nuestra herramienta. Ingresa las dimensiones y peso de tu paquete para obtener una cotización inmediata.</p>
-    
+
     <div class="calculator-container">
       <div class="calculator-form-container">
         <h2>Detalles del Envío</h2>
-        
+
         <!-- Formulario de cálculo -->
         <form [formGroup]="calculatorForm" (ngSubmit)="calculateShipping()">
-          
+
           <!-- Origen y Destino -->
           <div class="form-row">
             <div class="form-group">
               <label for="origin">Origen</label>
               <select id="origin" formControlName="origin" class="form-control" [ngClass]="{'is-invalid': isInvalidAndTouched('origin')}">
-                <option *ngFor="let option of origins" [value]="option.value">{{ option.label }}</option>
+                @for (option of origins; track option) {
+                  <option [value]="option.value">{{ option.label }}</option>
+                }
               </select>
-              <div class="invalid-feedback" *ngIf="isInvalidAndTouched('origin')">
-                Por favor selecciona un origen.
-              </div>
+              @if (isInvalidAndTouched('origin')) {
+                <div class="invalid-feedback">
+                  Por favor selecciona un origen.
+                </div>
+              }
             </div>
-            
+
             <div class="form-group">
               <label for="destination">Destino</label>
               <select id="destination" formControlName="destination" class="form-control" [ngClass]="{'is-invalid': isInvalidAndTouched('destination')}">
-                <option *ngFor="let option of destinations" [value]="option.value">{{ option.label }}</option>
+                @for (option of destinations; track option) {
+                  <option [value]="option.value">{{ option.label }}</option>
+                }
               </select>
-              <div class="invalid-feedback" *ngIf="isInvalidAndTouched('destination')">
-                Por favor selecciona un destino.
-              </div>
+              @if (isInvalidAndTouched('destination')) {
+                <div class="invalid-feedback">
+                  Por favor selecciona un destino.
+                </div>
+              }
             </div>
           </div>
-          
+
           <!-- Tipo de paquete y servicio -->
           <div class="form-row">
             <div class="form-group">
               <label for="packageType">Tipo de Paquete</label>
               <select id="packageType" formControlName="packageType" class="form-control" [ngClass]="{'is-invalid': isInvalidAndTouched('packageType')}">
-                <option *ngFor="let option of packageTypes" [value]="option.value">{{ option.label }}</option>
+                @for (option of packageTypes; track option) {
+                  <option [value]="option.value">{{ option.label }}</option>
+                }
               </select>
-              <div class="invalid-feedback" *ngIf="isInvalidAndTouched('packageType')">
-                Por favor selecciona un tipo de paquete.
-              </div>
+              @if (isInvalidAndTouched('packageType')) {
+                <div class="invalid-feedback">
+                  Por favor selecciona un tipo de paquete.
+                </div>
+              }
             </div>
-            
+
             <div class="form-group">
               <label for="service">Servicio</label>
               <select id="service" formControlName="service" class="form-control" [ngClass]="{'is-invalid': isInvalidAndTouched('service')}">
-                <option *ngFor="let option of services" [value]="option.value">{{ option.label }}</option>
+                @for (option of services; track option) {
+                  <option [value]="option.value">{{ option.label }}</option>
+                }
               </select>
-              <div class="invalid-feedback" *ngIf="isInvalidAndTouched('service')">
-                Por favor selecciona un servicio.
-              </div>
+              @if (isInvalidAndTouched('service')) {
+                <div class="invalid-feedback">
+                  Por favor selecciona un servicio.
+                </div>
+              }
             </div>
           </div>
-          
+
           <!-- Peso y valor -->
           <div class="form-row">
             <div class="form-group">
               <label for="weight">Peso (lb)</label>
               <input type="number" id="weight" formControlName="weight" class="form-control" [ngClass]="{'is-invalid': isInvalidAndTouched('weight')}" min="0.1" step="0.1">
-              <div class="invalid-feedback" *ngIf="isInvalidAndTouched('weight')">
-                <span *ngIf="calculatorForm.get('weight')?.errors?.['required']">El peso es requerido.</span>
-                <span *ngIf="calculatorForm.get('weight')?.errors?.['min']">El peso mínimo es 0.1 lb.</span>
-                <span *ngIf="calculatorForm.get('weight')?.errors?.['max']">El peso máximo es 100 lb.</span>
-              </div>
+              @if (isInvalidAndTouched('weight')) {
+                <div class="invalid-feedback">
+                  @if (calculatorForm.get('weight')?.errors?.['required']) {
+                    <span>El peso es requerido.</span>
+                  }
+                  @if (calculatorForm.get('weight')?.errors?.['min']) {
+                    <span>El peso mínimo es 0.1 lb.</span>
+                  }
+                  @if (calculatorForm.get('weight')?.errors?.['max']) {
+                    <span>El peso máximo es 100 lb.</span>
+                  }
+                </div>
+              }
             </div>
-            
+
             <div class="form-group">
               <label for="value">Valor Declarado ($)</label>
               <input type="number" id="value" formControlName="value" class="form-control" [ngClass]="{'is-invalid': isInvalidAndTouched('value')}" min="0" step="1">
-              <div class="invalid-feedback" *ngIf="isInvalidAndTouched('value')">
-                <span *ngIf="calculatorForm.get('value')?.errors?.['min']">El valor no puede ser negativo.</span>
-              </div>
+              @if (isInvalidAndTouched('value')) {
+                <div class="invalid-feedback">
+                  @if (calculatorForm.get('value')?.errors?.['min']) {
+                    <span>El valor no puede ser negativo.</span>
+                  }
+                </div>
+              }
             </div>
           </div>
-          
+
           <!-- Dimensiones -->
           <div class="form-row three-columns">
             <div class="form-group">
               <label for="length">Largo (cm)</label>
               <input type="number" id="length" formControlName="length" class="form-control" [ngClass]="{'is-invalid': isInvalidAndTouched('length')}" min="1" step="1">
-              <div class="invalid-feedback" *ngIf="isInvalidAndTouched('length')">
-                <span *ngIf="calculatorForm.get('length')?.errors?.['required']">El largo es requerido.</span>
-                <span *ngIf="calculatorForm.get('length')?.errors?.['min']">El largo mínimo es 1 cm.</span>
-              </div>
+              @if (isInvalidAndTouched('length')) {
+                <div class="invalid-feedback">
+                  @if (calculatorForm.get('length')?.errors?.['required']) {
+                    <span>El largo es requerido.</span>
+                  }
+                  @if (calculatorForm.get('length')?.errors?.['min']) {
+                    <span>El largo mínimo es 1 cm.</span>
+                  }
+                </div>
+              }
             </div>
-            
+
             <div class="form-group">
               <label for="width">Ancho (cm)</label>
               <input type="number" id="width" formControlName="width" class="form-control" [ngClass]="{'is-invalid': isInvalidAndTouched('width')}" min="1" step="1">
-              <div class="invalid-feedback" *ngIf="isInvalidAndTouched('width')">
-                <span *ngIf="calculatorForm.get('width')?.errors?.['required']">El ancho es requerido.</span>
-                <span *ngIf="calculatorForm.get('width')?.errors?.['min']">El ancho mínimo es 1 cm.</span>
-              </div>
+              @if (isInvalidAndTouched('width')) {
+                <div class="invalid-feedback">
+                  @if (calculatorForm.get('width')?.errors?.['required']) {
+                    <span>El ancho es requerido.</span>
+                  }
+                  @if (calculatorForm.get('width')?.errors?.['min']) {
+                    <span>El ancho mínimo es 1 cm.</span>
+                  }
+                </div>
+              }
             </div>
-            
+
             <div class="form-group">
               <label for="height">Alto (cm)</label>
               <input type="number" id="height" formControlName="height" class="form-control" [ngClass]="{'is-invalid': isInvalidAndTouched('height')}" min="1" step="1">
-              <div class="invalid-feedback" *ngIf="isInvalidAndTouched('height')">
-                <span *ngIf="calculatorForm.get('height')?.errors?.['required']">El alto es requerido.</span>
-                <span *ngIf="calculatorForm.get('height')?.errors?.['min']">El alto mínimo es 1 cm.</span>
-              </div>
+              @if (isInvalidAndTouched('height')) {
+                <div class="invalid-feedback">
+                  @if (calculatorForm.get('height')?.errors?.['required']) {
+                    <span>El alto es requerido.</span>
+                  }
+                  @if (calculatorForm.get('height')?.errors?.['min']) {
+                    <span>El alto mínimo es 1 cm.</span>
+                  }
+                </div>
+              }
             </div>
           </div>
-          
+
           <!-- Seguro -->
           <div class="form-check">
             <input type="checkbox" id="insurance" formControlName="insurance" class="form-check-input">
             <label for="insurance" class="form-check-label">Agregar seguro al envío (5% del valor declarado)</label>
           </div>
-          
+
           <!-- Botones de acción -->
           <div class="form-actions">
             <button type="submit" class="btn-calculate" [disabled]="isLoading">
-              <span *ngIf="!isLoading">Calcular Costo</span>
-              <span *ngIf="isLoading">
-                <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon> Calculando...
-              </span>
+              @if (!isLoading) {
+                <span>Calcular Costo</span>
+              }
+              @if (isLoading) {
+                <span>
+                  <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon> Calculando...
+                </span>
+              }
             </button>
             <button type="button" class="btn-reset" (click)="resetForm()" [disabled]="isLoading">Reiniciar</button>
           </div>
-          
+
           <!-- Mensaje de error -->
-          <div class="error-message" *ngIf="errorMessage">
-            <fa-icon [icon]="faExclamation"></fa-icon> {{ errorMessage }}
-          </div>
+          @if (errorMessage) {
+            <div class="error-message">
+              <fa-icon [icon]="faExclamation"></fa-icon> {{ errorMessage }}
+            </div>
+          }
         </form>
       </div>
-      
+
       <!-- Resultados del cálculo -->
-      <div class="calculator-results" *ngIf="isCalculated && calculation">
-        <h2>Resultado del Cálculo</h2>
-        
-        <div class="results-container">
-          <div class="result-item">
-            <span class="result-label">Subtotal:</span>
-            <span class="result-value">${{ calculation.subtotal.toFixed(2) }}</span>
+      @if (isCalculated && calculation) {
+        <div class="calculator-results">
+          <h2>Resultado del Cálculo</h2>
+          <div class="results-container">
+            <div class="result-item">
+              <span class="result-label">Subtotal:</span>
+              <span class="result-value">${{ calculation.subtotal.toFixed(2) }}</span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Impuestos:</span>
+              <span class="result-value">${{ calculation.taxes.toFixed(2) }}</span>
+            </div>
+            @if (calculatorForm.value.insurance) {
+              <div class="result-item">
+                <span class="result-label">Seguro:</span>
+                <span class="result-value">${{ calculation.insurance.toFixed(2) }}</span>
+              </div>
+            }
+            <div class="result-item total">
+              <span class="result-label">Total:</span>
+              <span class="result-value">${{ calculation.total.toFixed(2) }}</span>
+            </div>
+            <div class="result-item delivery">
+              <span class="result-label">Entrega Estimada:</span>
+              <span class="result-value">{{ calculation.estimated_delivery }}</span>
+            </div>
           </div>
-          
-          <div class="result-item">
-            <span class="result-label">Impuestos:</span>
-            <span class="result-value">${{ calculation.taxes.toFixed(2) }}</span>
-          </div>
-          
-          <div class="result-item" *ngIf="calculatorForm.value.insurance">
-            <span class="result-label">Seguro:</span>
-            <span class="result-value">${{ calculation.insurance.toFixed(2) }}</span>
-          </div>
-          
-          <div class="result-item total">
-            <span class="result-label">Total:</span>
-            <span class="result-value">${{ calculation.total.toFixed(2) }}</span>
-          </div>
-          
-          <div class="result-item delivery">
-            <span class="result-label">Entrega Estimada:</span>
-            <span class="result-value">{{ calculation.estimated_delivery }}</span>
+          <div class="results-actions">
+            <a routerLink="/register" class="btn-primary">Registrarse y Enviar</a>
           </div>
         </div>
-        
-        <div class="results-actions">
-          <a routerLink="/register" class="btn-primary">Registrarse y Enviar</a>
-        </div>
-      </div>
+      }
     </div>
   </div>
 </section>

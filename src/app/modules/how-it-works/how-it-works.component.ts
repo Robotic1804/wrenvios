@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { faUserPlus, faShoppingCart, faCheckCircle, faCreditCard, faShippingFast, faBoxOpen, faTruck, faBell, faBox, faPlus, faMinus} from '@fortawesome/free-solid-svg-icons';
+import type { OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { faUserPlus, faShoppingCart, faCheckCircle, faCreditCard, faShippingFast, faBoxOpen, faTruck, faBell, faBox, faPlus, faMinus} from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons/faStar';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 interface Step {
   number: number;

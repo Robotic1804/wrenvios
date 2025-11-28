@@ -1,118 +1,123 @@
-# WRENVIOS - Delivery & Logistics Management Platform
+# WRENVIOS - Delivery & Logistics Platform
 
-![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen?style=for-the-badge)
-![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Angular](https://img.shields.io/badge/Angular-20.3.14-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3.5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 
-**Real-time Package Tracking | Order Management | Payment Integration | Enterprise Scale**
-
----
-
-## Overview
-
-WRENVIOS is an enterprise-grade delivery and logistics management platform built with cutting-edge technologies. Designed to handle complex logistics operations with real-time tracking, automated order management, and seamless payment processing. Perfect for delivery services, e-commerce fulfillment, and third-party logistics providers.
-
-### Key Highlights
-
-- ⚡ **Real-time Tracking** - GPS-enabled live package location updates
-- 🔐 **Secure Payments** - PCI-compliant payment gateway integration
-- 📊 **Advanced Analytics** - Comprehensive dashboard with actionable insights
-- 🚀 **Scalable Architecture** - Engineered for 50K+ concurrent users
-- 🌐 **Responsive Design** - Seamless experience across all devices
-- 🔧 **REST API** - Comprehensive API for third-party integrations
+A modern delivery and logistics management platform built with Angular 20 and Server-Side Rendering (SSR).
 
 ---
 
 ## Technology Stack
 
-### Frontend
-![Angular](https://img.shields.io/badge/Angular-DD0031?style=flat-square&logo=angular&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Bootstrap 5](https://img.shields.io/badge/Bootstrap%205-7952B3?style=flat-square&logo=bootstrap&logoColor=white)
-![RxJS](https://img.shields.io/badge/RxJS-B7178C?style=flat-square&logo=reactivex&logoColor=white)
+### Core
+- **Angular** 20.3.14 - Frontend framework with standalone components
+- **TypeScript** 5.8.3 - Type-safe JavaScript
+- **Angular SSR** - Server-Side Rendering with Express.js
+- **RxJS** 7.8.0 - Reactive programming
 
-### Backend
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white)
-![JWT](https://img.shields.io/badge/JWT-000000?style=flat-square&logo=jsonwebtokens&logoColor=white)
+### UI/UX
+- **Bootstrap** 5.3.5 - Responsive CSS framework
+- **FontAwesome** 6.7.2 - Icon library
+- **ngx-toastr** 19.0.0 - Toast notifications
 
-### Database
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
+### Code Quality
+- **ESLint** 9.39.1 - Code linting
+- **@angular-eslint** 21.0.1 - Angular-specific linting rules
+- **@typescript-eslint** 8.48.0 - TypeScript linting
 
-### Infrastructure
-![AWS](https://img.shields.io/badge/AWS-FF9900?style=flat-square&logo=amazon-aws&logoColor=white)
-
----
-
-## Core Features
-
-### 🚚 Real-Time Package Tracking
-Track packages in real-time with GPS integration and live location updates. Customers receive notifications at every stage of their delivery journey.
-
-**Features:**
-- Live GPS tracking
-- Delivery status notifications
-- Estimated time of arrival (ETA)
-- Route optimization
-- Geofencing alerts
-
-### 📦 Order Management System
-Automated order processing with intelligent routing and dispatcher management.
-
-**Features:**
-- Automated order assignment
-- Multi-stop route optimization
-- Batch processing
-- Order history tracking
-- Digital proof of delivery
-
-### 💳 Payment Integration
-Secure payment gateway integration with support for multiple payment methods.
-
-**Features:**
-- PCI-DSS compliant
-- Multiple payment providers
-- Recurring billing
-- Invoice generation
-- Transaction history
-
-### 📊 Advanced Analytics Dashboard
-Comprehensive analytics and reporting for business intelligence.
-
-**Features:**
-- Real-time performance metrics
-- Delivery analytics
-- Financial reports
-- User behavior insights
-- Custom report generation
-
-### 👥 User Management
-Role-based access control with support for multiple user types.
-
-**Features:**
-- Admin panel
-- Dispatcher management
-- Customer portal
-- Driver mobile app support
-- Audit logging
+### Testing
+- **Jasmine** 5.1.0 - Testing framework
+- **Karma** 6.4.0 - Test runner
 
 ---
 
-## Quick Start
+## Features
 
-### Prerequisites
+### ✅ Implemented
 
-- Node.js v16+
-- MySQL 8.0+
-- Angular CLI 15+
-- Git
+- **📦 Shipping Calculator** - Calculate shipping costs based on origin, destination, weight, and service type
+- **🔍 Package Tracking** - Track package status interface
+- **📞 Contact Form** - Contact page for customer inquiries
+- **ℹ️ Information Pages** - Services, How It Works, Home with testimonials
+- **👤 User Management UI** - Login, Register, and Profile pages
+- **🔐 Route Guards** - Auth and Admin guards (placeholder implementation)
+- **⚡ Lazy Loading** - Admin module with lazy loading
+- **📱 Responsive Design** - Mobile-first approach with Bootstrap
+- **🚀 SSR Support** - Server-Side Rendering for better SEO and performance
+- **🎨 Modern UI** - Clean interface with FontAwesome icons
 
-### Installation
+### 🚧 Planned
+
+- Backend API integration
+- Real authentication system
+- Database integration
+- Payment gateway
+- Real-time tracking with GPS
+- Admin dashboard functionality
+
+---
+
+## Project Structure
+
+```
+envios-app/
+├── src/
+│   ├── app/
+│   │   ├── components/           # Shared components
+│   │   │   ├── login/
+│   │   │   ├── register/
+│   │   │   ├── profile/
+│   │   │   └── not-found/
+│   │   ├── core/                 # Core functionality
+│   │   │   ├── guards/           # Route guards
+│   │   │   ├── models/           # Data models
+│   │   │   └── services/         # Business logic services
+│   │   ├── layout/               # Layout components
+│   │   │   ├── header/
+│   │   │   └── footer/
+│   │   ├── modules/              # Feature modules
+│   │   │   ├── admin/            # Admin module (lazy loaded)
+│   │   │   ├── calculator/       # Shipping calculator
+│   │   │   ├── contact/          # Contact page
+│   │   │   ├── home/             # Homepage
+│   │   │   ├── how-it-works/     # How it works page
+│   │   │   ├── services/         # Services page
+│   │   │   ├── testimonials/     # Testimonials
+│   │   │   └── tracking/         # Package tracking
+│   │   ├── shared/               # Shared utilities
+│   │   │   └── pipes/            # Custom pipes
+│   │   ├── app.component.ts      # Root component
+│   │   ├── app.config.ts         # App configuration
+│   │   ├── app.config.server.ts  # SSR configuration
+│   │   └── app.routes.ts         # Route definitions
+│   ├── main.ts                   # Client bootstrap
+│   ├── main.server.ts            # Server bootstrap
+│   └── styles.scss               # Global styles
+├── server.ts                     # Express SSR server
+├── eslint.config.mjs             # ESLint configuration
+├── tsconfig.json                 # TypeScript configuration
+├── angular.json                  # Angular workspace configuration
+└── package.json                  # Dependencies
+
+```
+
+---
+
+## Prerequisites
+
+- **Node.js** v18+
+- **npm** v9+
+- **Angular CLI** v20+
+
+---
+
+## Installation
 
 **1. Clone the repository**
 ```bash
 git clone https://github.com/Robotic1804/wrenvios.git
-cd wrenvios
+cd wrenvios/envios-app
 ```
 
 **2. Install dependencies**
@@ -120,182 +125,191 @@ cd wrenvios
 npm install
 ```
 
-**3. Configure environment variables**
-```bash
-cp .env.example .env
+---
 
-# Update with your configuration:
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=your_password
-DB_NAME=wrenvios
-JWT_SECRET=your_jwt_secret
-STRIPE_KEY=your_stripe_key
-```
+## Development
 
-**4. Setup database**
+### Start development server
 ```bash
-npm run db:migrate
-npm run db:seed
-```
-
-**5. Start the application**
-```bash
+npm start
+# or
 ng serve
 ```
+Navigate to `http://localhost:4200`
 
-Visit `http://localhost:4200` to access the application.
-
----
-
-## API Documentation
-
-### Authentication
+### Start SSR development server
 ```bash
-POST /api/auth/login
-Content-Type: application/json
-
-{
-  "email": "user@example.com",
-  "password": "password123"
-}
+npm run serve:ssr:envios-app
 ```
 
-### Track Package
+### Watch mode
 ```bash
-GET /api/packages/:trackingId
-Authorization: Bearer {token}
+npm run watch
 ```
 
-### Create Order
+---
+
+## Code Quality
+
+### Run ESLint
 ```bash
-POST /api/orders
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{
-  "recipient": {
-    "name": "John Doe",
-    "address": "123 Main St",
-    "phone": "+1234567890"
-  },
-  "items": [
-    {
-      "description": "Package",
-      "weight": 2.5
-    }
-  ]
-}
+npm run lint
 ```
 
----
-
-## Project Architecture
-
+### Auto-fix ESLint issues
+```bash
+npm run lint:fix
 ```
-wrenvios/
-├── src/
-│   ├── app/
-│   │   ├── components/          # Reusable UI components
-│   │   ├── services/            # API & business logic services
-│   │   ├── pages/               # Route pages/views
-│   │   ├── models/              # Data models & interfaces
-│   │   ├── guards/              # Route guards
-│   │   └── interceptors/        # HTTP interceptors
-│   ├── assets/                  # Static assets
-│   ├── styles/                  # Global styles
-│   └── environments/            # Environment configs
-├── angular.json
-├── tsconfig.json
-└── package.json
-```
-
----
-
-## Performance Metrics
-
-| Metric | Target | Status |
-|--------|--------|--------|
-| Page Load Time | < 2s | ✅ |
-| API Response Time | < 100ms | ✅ |
-| Database Query Time | < 50ms | ✅ |
-| Concurrent Users | 50K+ | ✅ |
-| Uptime | 99.9% | ✅ |
-
----
-
-## Security Features
-
-- ✅ JWT-based authentication
-- ✅ HTTPS/TLS encryption
-- ✅ SQL injection prevention
-- ✅ XSS protection
-- ✅ CSRF tokens
-- ✅ Rate limiting
-- ✅ Input validation
-- ✅ Secure password hashing
 
 ---
 
 ## Testing
 
+### Run unit tests
 ```bash
-# Run unit tests
+npm test
+# or
 ng test
+```
 
-# Run with coverage
+### Run tests with coverage
+```bash
 ng test --code-coverage
-
-# Run e2e tests
-ng e2e
 ```
 
 ---
 
-## Build & Deployment
+## Build
 
-### Production Build
+### Production build (Client-side)
+```bash
+npm run build
+# or
+ng build
+```
+
+### Production build with SSR
 ```bash
 ng build --configuration production
 ```
 
-### AWS Deployment
-- Frontend: AWS S3 + CloudFront CDN
-- Backend: AWS EC2 or ECS
-- Database: AWS RDS MySQL
-- Storage: AWS S3
-- Cache: AWS ElastiCache
+The build artifacts will be stored in the `dist/` directory.
+
+---
+
+## ESLint Configuration
+
+The project uses ESLint with the following plugins:
+- `@angular-eslint` - Angular-specific rules
+- `@typescript-eslint` - TypeScript rules
+- `eslint-plugin-import` - Import/export validation
+
+**Key rules enforced:**
+- Component/Directive naming conventions
+- Import ordering
+- No unused variables
+- Type safety
+- Code quality standards
+
+---
+
+## Architecture Highlights
+
+### Standalone Components
+All components use Angular's standalone component architecture (no NgModules except for lazy-loaded features).
+
+### Server-Side Rendering (SSR)
+- Express.js server for SSR
+- Improved SEO and initial load performance
+- Separate configurations for client and server
+
+### Lazy Loading
+- Admin module is lazy-loaded for better performance
+- Route-based code splitting
+
+### Route Guards
+- `authGuard` - Protects authenticated routes
+- `adminGuard` - Protects admin routes
+- Currently placeholder implementations (return true)
+
+---
+
+## Routes
+
+| Path | Component | Guard | Description |
+|------|-----------|-------|-------------|
+| `/` | Home | - | Homepage with features |
+| `/services` | Services | - | Services overview |
+| `/how-it-works` | HowItWorks | - | Process explanation |
+| `/calculator` | Calculator | - | Shipping cost calculator |
+| `/tracking` | Tracking | - | Package tracking |
+| `/contact` | Contact | - | Contact form |
+| `/login` | Login | - | User login |
+| `/register` | Register | - | User registration |
+| `/profile` | Profile | authGuard | User profile |
+| `/admin/*` | Admin Module | adminGuard | Admin dashboard (lazy) |
+| `/**` | NotFound | - | 404 page |
+
+---
+
+## Environment Configuration
+
+The application uses Angular's environment configuration:
+- `environment.ts` - Development environment
+- `environment.prod.ts` - Production environment
+
+---
+
+## Scripts Reference
+
+| Command | Description |
+|---------|-------------|
+| `npm start` | Start development server |
+| `npm run build` | Build for production |
+| `npm test` | Run unit tests |
+| `npm run lint` | Run ESLint checks |
+| `npm run lint:fix` | Auto-fix ESLint issues |
+| `npm run watch` | Build in watch mode |
+| `npm run serve:ssr:envios-app` | Start SSR server |
 
 ---
 
 ## Contributing
 
-We welcome contributions! Please follow these steps:
-
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/YourFeature`)
-3. Commit your changes (`git commit -m 'Add YourFeature'`)
-4. Push to the branch (`git push origin feature/YourFeature`)
-5. Open a Pull Request
+3. Make your changes
+4. Run linting: `npm run lint`
+5. Run tests: `npm test`
+6. Commit with descriptive message
+7. Push to your branch
+8. Create a Pull Request
 
 ---
 
 ## Roadmap
 
-### v1.1.0
-- Mobile app (React Native)
-- Machine learning for route optimization
-- Multi-language support
-- Advanced reporting features
+### Phase 1 - Backend Integration
+- [ ] REST API development
+- [ ] Database setup (MySQL/PostgreSQL)
+- [ ] JWT authentication
+- [ ] User management
 
-### v1.2.0
-- Blockchain integration
-- AI-powered customer support
-- Enhanced analytics dashboard
+### Phase 2 - Core Features
+- [ ] Real package tracking
+- [ ] Payment gateway integration
+- [ ] Email notifications
+- [ ] Admin dashboard functionality
+
+### Phase 3 - Advanced Features
+- [ ] Real-time GPS tracking
+- [ ] Mobile app (React Native/Flutter)
+- [ ] Analytics dashboard
+- [ ] Multi-language support
 
 ---
 
-## Support & Contact
+## Contact & Support
 
 | Channel | Link |
 |---------|------|
@@ -307,23 +321,27 @@ We welcome contributions! Please follow these steps:
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License.
 
 ---
 
 ## Changelog
 
-### v1.0.0 - October 2025
-- Initial production release
-- Real-time tracking system
-- Complete order management
-- Payment gateway integration
-- Analytics dashboard
-- Mobile responsive design
+### v0.0.0 - Current
+- Initial Angular 20 setup with SSR
+- Shipping calculator implementation
+- Tracking interface
+- Contact, Services, and How It Works pages
+- Login/Register/Profile UI
+- Admin module with lazy loading
+- ESLint configuration
+- Bootstrap 5 integration
+- FontAwesome icons
+- Responsive design
 
 ---
 
-**Built with ❤️ by [Norman Navarro](https://www.linkedin.com/in/norm-frontend-developer/) | Full Stack Developer**
+**Built with ❤️ by [Norman Navarro](https://www.linkedin.com/in/norm-frontend-developer/) | Frontend Developer**
 
 ---
 

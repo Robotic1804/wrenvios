@@ -8,65 +8,73 @@
         <h4>WR<span>ENVIOS</span></h4>
         <p>Tu conexión confiable entre Estados Unidos y Nicaragua. Ofrecemos servicios de compras por encargo y envío de paquetes con las mejores tarifas del mercado.</p>
         <div class="social-links">
-          <a *ngFor="let social of socialLinks" [href]="social.url" target="_blank" rel="noopener noreferrer">
-            <fa-icon [icon]="social.icon"></fa-icon>
-          </a>
+          @for (social of socialLinks; track social) {
+            <a [href]="social.url" target="_blank" rel="noopener noreferrer">
+              <fa-icon [icon]="social.icon"></fa-icon>
+            </a>
+          }
         </div>
       </div>
-      
+
       <!-- Enlaces de navegación -->
       <div class="footer-section links">
         <h4>Navegación</h4>
         <ul>
-          <li *ngFor="let link of navLinks">
-            <a [routerLink]="link.route">{{ link.text }}</a>
-          </li>
+          @for (link of navLinks; track link) {
+            <li>
+              <a [routerLink]="link.route">{{ link.text }}</a>
+            </li>
+          }
         </ul>
       </div>
-      
+
       <!-- Enlaces de servicios -->
       <div class="footer-section links">
         <h4>Servicios</h4>
         <ul>
-          <li *ngFor="let link of serviceLinks">
-            <a [routerLink]="link.route">{{ link.text }}</a>
-          </li>
+          @for (link of serviceLinks; track link) {
+            <li>
+              <a [routerLink]="link.route">{{ link.text }}</a>
+            </li>
+          }
         </ul>
       </div>
-      
+
       <!-- Información de contacto -->
       <div class="footer-section contact">
         <h4>Contacto</h4>
         <p>
-          <fa-icon [icon]="faMapMarkedAlt"></fa-icon> 
+          <fa-icon [icon]="faMapMarkedAlt"></fa-icon>
           <span>Miami: 123 NW 23rd St, Miami, FL 33127</span>
         </p>
         <p>
-          <fa-icon [icon]="faMapMarkedAlt"></fa-icon> 
+          <fa-icon [icon]="faMapMarkedAlt"></fa-icon>
           <span>Managua: Centro Comercial Managua, Local 45</span>
         </p>
         <p>
-          <fa-icon [icon]="faPhone"></fa-icon> 
+          <fa-icon [icon]="faPhone"></fa-icon>
           <span>USA: +1 (305) 123-4567</span>
         </p>
         <p>
-          <fa-icon [icon]="faPhone"></fa-icon> 
+          <fa-icon [icon]="faPhone"></fa-icon>
           <span>NIC: +505 2222-3333</span>
         </p>
         <p>
-          <fa-icon [icon]="faEnvelope"></fa-icon> 
+          <fa-icon [icon]="faEnvelope"></fa-icon>
           <span>wriossevilla&#64;gmail.com</span>
         </p>
       </div>
     </div>
-    
+
     <!-- Sección inferior con copyright y enlaces legales -->
     <div class="footer-bottom">
       <div class="copyright">
         &copy; {{ currentYear }} WRENVIOS. Todos los derechos reservados.
       </div>
       <div class="legal-links">
-        <a *ngFor="let link of legalLinks" [routerLink]="link.route">{{ link.text }}</a>
+        @for (link of legalLinks; track link) {
+          <a [routerLink]="link.route">{{ link.text }}</a>
+        }
       </div>
     </div>
   </div>

@@ -3,70 +3,76 @@
   <div class="container">
     <h1 class="section-title">¿Cómo Funciona?</h1>
     <p class="section-description">Conoce el proceso paso a paso para utilizar nuestros servicios de compras por encargo y envío de paquetes entre Estados Unidos y Nicaragua.</p>
-    
+
     <!-- Selector de servicio -->
     <div class="service-selector">
-      <button 
-        [ngClass]="{'active': activeSection === 'shopping'}" 
+      <button
+        [ngClass]="{'active': activeSection === 'shopping'}"
         (click)="setActiveSection('shopping')"
-      >
+        >
         <fa-icon [icon]="faShoppingCart"></fa-icon>
         Compras por Encargo
       </button>
-      <button 
-        [ngClass]="{'active': activeSection === 'shipping'}" 
+      <button
+        [ngClass]="{'active': activeSection === 'shipping'}"
         (click)="setActiveSection('shipping')"
-      >
+        >
         <fa-icon [icon]="faBox"></fa-icon>
         Envío de Paquetes
       </button>
     </div>
-    
+
     <!-- Pasos para compras por encargo -->
-    <div class="steps-container" *ngIf="activeSection === 'shopping'">
-      <div class="step-item" *ngFor="let step of shoppingSteps">
-        <div class="step-number">{{ step.number }}</div>
-        <div class="step-content">
-          <div class="step-icon">
-            <fa-icon [icon]="step.icon"></fa-icon>
+    @if (activeSection === 'shopping') {
+      <div class="steps-container">
+        @for (step of shoppingSteps; track step) {
+          <div class="step-item">
+            <div class="step-number">{{ step.number }}</div>
+            <div class="step-content">
+              <div class="step-icon">
+                <fa-icon [icon]="step.icon"></fa-icon>
+              </div>
+              <h3>{{ step.title }}</h3>
+              <p>{{ step.description }}</p>
+            </div>
+            <div class="step-image">
+              <img [src]="step.image" [alt]="step.title">
+            </div>
           </div>
-          <h3>{{ step.title }}</h3>
-          <p>{{ step.description }}</p>
-        </div>
-        <div class="step-image">
-          <img [src]="step.image" [alt]="step.title">
+        }
+        <!-- Llamada a la acción -->
+        <div class="step-cta">
+          <p>¿Listo para empezar a comprar en Estados Unidos?</p>
+          <a routerLink="/register" class="btn-primary">Crear Cuenta</a>
         </div>
       </div>
-      
-      <!-- Llamada a la acción -->
-      <div class="step-cta">
-        <p>¿Listo para empezar a comprar en Estados Unidos?</p>
-        <a routerLink="/register" class="btn-primary">Crear Cuenta</a>
-      </div>
-    </div>
-    
+    }
+
     <!-- Pasos para envío de paquetes -->
-    <div class="steps-container" *ngIf="activeSection === 'shipping'">
-      <div class="step-item" *ngFor="let step of shippingSteps">
-        <div class="step-number">{{ step.number }}</div>
-        <div class="step-content">
-          <div class="step-icon">
-            <fa-icon [icon]="step.icon"></fa-icon>
+    @if (activeSection === 'shipping') {
+      <div class="steps-container">
+        @for (step of shippingSteps; track step) {
+          <div class="step-item">
+            <div class="step-number">{{ step.number }}</div>
+            <div class="step-content">
+              <div class="step-icon">
+                <fa-icon [icon]="step.icon"></fa-icon>
+              </div>
+              <h3>{{ step.title }}</h3>
+              <p>{{ step.description }}</p>
+            </div>
+            <div class="step-image">
+              <img [src]="step.image" [alt]="step.title">
+            </div>
           </div>
-          <h3>{{ step.title }}</h3>
-          <p>{{ step.description }}</p>
-        </div>
-        <div class="step-image">
-          <img [src]="step.image" [alt]="step.title">
+        }
+        <!-- Llamada a la acción -->
+        <div class="step-cta">
+          <p>¿Listo para recibir tus compras en Nicaragua?</p>
+          <a routerLink="/register" class="btn-primary">Obtener Mi Dirección en Miami</a>
         </div>
       </div>
-      
-      <!-- Llamada a la acción -->
-      <div class="step-cta">
-        <p>¿Listo para recibir tus compras en Nicaragua?</p>
-        <a routerLink="/register" class="btn-primary">Obtener Mi Dirección en Miami</a>
-      </div>
-    </div>
+    }
   </div>
 </section>
 
@@ -74,17 +80,19 @@
 <section class="faq-section">
   <div class="container">
     <h2 class="section-title">Preguntas Frecuentes</h2>
-    
+
     <div class="faq-container">
-      <div class="faq-item" *ngFor="let faq of faqs; let i = index">
-        <div class="faq-question" (click)="faq.isOpen = !faq.isOpen">
-          <h3>{{ faq.question }}</h3>
-          <fa-icon [icon]="faq.isOpen ? faMinus : faPlus"></fa-icon>
+      @for (faq of faqs; track faq; let i = $index) {
+        <div class="faq-item">
+          <div class="faq-question" (click)="faq.isOpen = !faq.isOpen">
+            <h3>{{ faq.question }}</h3>
+            <fa-icon [icon]="faq.isOpen ? faMinus : faPlus"></fa-icon>
+          </div>
+          <div class="faq-answer" [ngClass]="{'open': faq.isOpen}">
+            <p>{{ faq.answer }}</p>
+          </div>
         </div>
-        <div class="faq-answer" [ngClass]="{'open': faq.isOpen}">
-          <p>{{ faq.answer }}</p>
-        </div>
-      </div>
+      }
     </div>
   </div>
 </section>
@@ -93,19 +101,22 @@
 <section class="testimonial-section">
   <div class="container">
     <h2 class="section-title">Lo que Dicen Nuestros Clientes</h2>
-    
+
     <div class="testimonial-container">
-      <div class="testimonial-card" *ngFor="let testimonial of testimonials">
-        <div class="testimonial-rating">
- 
-          <fa-icon [icon]="faStarSolid" *ngFor="let star of [1,2,3,4,5]" [ngClass]="{'active': star <= testimonial.rating}"></fa-icon>
+      @for (testimonial of testimonials; track testimonial) {
+        <div class="testimonial-card">
+          <div class="testimonial-rating">
+            @for (star of [1,2,3,4,5]; track star) {
+              <fa-icon [icon]="faStarSolid" [ngClass]="{'active': star <= testimonial.rating}"></fa-icon>
+            }
+          </div>
+          <p class="testimonial-comment">{{ testimonial.comment }}</p>
+          <div class="testimonial-author">
+            <p class="author-name">{{ testimonial.name }}</p>
+            <p class="author-location">{{ testimonial.location }}</p>
+          </div>
         </div>
-        <p class="testimonial-comment">{{ testimonial.comment }}</p>
-        <div class="testimonial-author">
-          <p class="author-name">{{ testimonial.name }}</p>
-          <p class="author-location">{{ testimonial.location }}</p>
-        </div>
-      </div>
+      }
     </div>
   </div>
 </section>

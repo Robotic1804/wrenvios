@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule, } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import type { OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faShoppingCart, faBox, } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,7 +9,7 @@ import { faShoppingCart, faBox, } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-home',
-    imports: [CommonModule, RouterModule, FormsModule, FontAwesomeModule],
+    imports: [RouterModule, FormsModule, FontAwesomeModule],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
 })

@@ -17,16 +17,18 @@
   <div class="container">
     <h2 class="section-title">Nuestros Servicios</h2>
     <div class="services-container">
-      <div class="service-card" *ngFor="let service of services">
-        <div class="service-icon">
-          <fa-icon [icon]="service.icon"></fa-icon>
+      @for (service of services; track service) {
+        <div class="service-card">
+          <div class="service-icon">
+            <fa-icon [icon]="service.icon"></fa-icon>
+          </div>
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+          <a [routerLink]="service.link" class="btn btn-primary">Más Información</a>
         </div>
-        <h3>{{ service.title }}</h3>
-        <p>{{ service.description }}</p>
-        <a [routerLink]="service.link" class="btn btn-primary">Más Información</a>
-      </div>
+      }
     </div>
-    
+
     <!-- Calculadora -->
     <div class="calculator">
       <h3>Calcula el Costo de tu Envío</h3>
@@ -96,10 +98,12 @@
 <section class="stats">
   <div class="container">
     <div class="stats-container">
-      <div class="stat-item" *ngFor="let stat of stats">
-        <div class="stat-number">{{ stat.number }}</div>
-        <div class="stat-text">{{ stat.text }}</div>
-      </div>
+      @for (stat of stats; track stat) {
+        <div class="stat-item">
+          <div class="stat-number">{{ stat.number }}</div>
+          <div class="stat-text">{{ stat.text }}</div>
+        </div>
+      }
     </div>
   </div>
 </section>
@@ -109,20 +113,22 @@
   <div class="container">
     <h2 class="section-title">Lo que Dicen Nuestros Clientes</h2>
     <div class="testimonials-container">
-      <div class="testimonial" *ngFor="let testimonial of testimonials">
-        <div class="testimonial-text">
-          {{ testimonial.text }}
-        </div>
-        <div class="testimonial-author">
-          <div class="author-avatar">
-            <img [src]="testimonial.avatar" alt="{{ testimonial.author }}">
+      @for (testimonial of testimonials; track testimonial) {
+        <div class="testimonial">
+          <div class="testimonial-text">
+            {{ testimonial.text }}
           </div>
-          <div>
-            <div class="author-name">{{ testimonial.author }}</div>
-            <div class="author-location">{{ testimonial.location }}</div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img [src]="testimonial.avatar" alt="{{ testimonial.author }}">
+            </div>
+            <div>
+              <div class="author-name">{{ testimonial.author }}</div>
+              <div class="author-location">{{ testimonial.location }}</div>
+            </div>
           </div>
         </div>
-      </div>
+      }
     </div>
   </div>
 </section>

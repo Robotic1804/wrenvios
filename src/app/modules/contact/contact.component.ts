@@ -1,17 +1,19 @@
 // src/app/modules/contact/contact.component.ts
-import { Component, OnInit } from '@angular/core';
-import {
+import { CommonModule,  } from '@angular/common';
+import type { OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import type {
   FormBuilder,
-  FormGroup,
+  FormGroup} from '@angular/forms';
+import {
   Validators,
 } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule,  } from '@angular/common';
+import type { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faFacebook, faInstagram, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faPhone, faEnvelope, faMapMarkerAlt, faClock, faDirections } from '@fortawesome/free-solid-svg-icons';
 import { faCheckCircle, faExclamation, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faInstagram, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 
 interface Office {
