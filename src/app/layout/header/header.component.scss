@@ -1,7 +1,7 @@
 // src/app/layout/header/header.component.scss
 
 // Importamos variables
-@import '../../../assets/scss/variables';
+@use '../../../assets/scss/variables' as *;
 
 header {
   background-color: white;

@@ -1,7 +1,7 @@
 // src/app/modules/home/home.component.scss
 
 // Importamos variables
-@import '../../../assets/scss/variables';
+@use '../../../assets/scss/variables' as *;
 
 /* Hero Section */
 .hero {

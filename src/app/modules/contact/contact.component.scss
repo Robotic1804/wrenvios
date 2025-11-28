@@ -1,7 +1,7 @@
 // src/app/modules/contact/contact.component.scss
 
 // Importamos variables
-@import '../../../assets/scss/variables';
+@use '../../../assets/scss/variables' as *;
 
 // Sección de contacto
 .contact-section {

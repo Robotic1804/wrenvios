@@ -1,7 +1,7 @@
 // src/app/modules/how-it-works/how-it-works.component.scss
 
 // Importamos variables
-@import '../../../assets/scss/variables';
+@use '../../../assets/scss/variables' as *;
 
 // Estilos generales de la sección
 .how-section {

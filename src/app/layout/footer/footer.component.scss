@@ -1,7 +1,7 @@
 // src/app/layout/footer/footer.component.scss
 
 // Importamos variables
-@import '../../../assets/scss/variables';
+@use '../../../assets/scss/variables' as *;
 
 footer {
   background-color: $dark;

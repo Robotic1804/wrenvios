@@ -1,12 +1,13 @@
 // src/assets/scss/variables.scss
+@use 'sass:color';
 
 // Colores principales
-$primary: #1a5276;    // Azul oscuro
-$secondary: #c0392b;  // Rojo
-$accent: #f39c12;     // Amarillo/Dorado
-$light: #f8f9fa;      // Gris muy claro
-$dark: #333333;       // Negro/Gris oscuro
-$gray: #f2f2f2;       // Gris claro
+$primary: #1a5276 !default;    // Azul oscuro
+$secondary: #c0392b !default;  // Rojo
+$accent: #f39c12 !default;     // Amarillo/Dorado
+$light: #f8f9fa !default;      // Gris muy claro
+$dark: #333333 !default;       // Negro/Gris oscuro
+$gray: #f2f2f2 !default;       // Gris claro
 
 // Fuentes
 $font-family-base: 'Roboto', sans-serif;
@@ -69,3 +70,8 @@ $zindex-modal-backdrop: 1040;
 $zindex-modal: 1050;
 $zindex-popover: 1060;
 $zindex-tooltip: 1070;
+
+// Helper function to replace deprecated darken()
+@function darken($color, $amount) {
+  @return color.scale($color, $lightness: -$amount);
+}

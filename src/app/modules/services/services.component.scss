@@ -1,7 +1,7 @@
 // src/app/modules/services/services.component.scss
 
-// Importamos variables
-@import '../../../assets/scss/variables';
+// Import variables using modern SASS
+@use '../../../assets/scss/variables' as *;
 
 // Hero de servicios
 .services-hero {

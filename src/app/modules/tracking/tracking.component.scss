@@ -1,7 +1,7 @@
 // src/app/modules/tracking/tracking.component.scss
 
 // Importamos variables
-@import '../../../assets/scss/variables';
+@use '../../../assets/scss/variables' as *;
 
 .tracking-section {
   padding: 120px 0 80px;

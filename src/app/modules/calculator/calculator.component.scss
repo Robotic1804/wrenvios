@@ -1,7 +1,7 @@
 // src/app/modules/calculator/calculator.component.scss
 
 // Importamos variables
-@import '../../../assets/scss/variables';
+@use '../../../assets/scss/variables' as *;
 
 .calculator-section {
   padding: 120px 0 80px;
