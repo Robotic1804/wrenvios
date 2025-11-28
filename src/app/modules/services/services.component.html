@@ -72,7 +72,10 @@
           @for (store of popularStores; track store) {
             <div class="store-card">
               <a [href]="store.url" target="_blank" rel="noopener noreferrer">
-                <img [src]="store.logo" [alt]="store.name">
+                <div class="store-icon" [style.color]="store.color">
+                  <fa-icon [icon]="getIconByName(store.icon)" size="3x"></fa-icon>
+                </div>
+                <div class="store-name">{{ store.name }}</div>
               </a>
             </div>
           }

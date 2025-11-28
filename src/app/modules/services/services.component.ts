@@ -3,7 +3,8 @@ import type { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import type { ActivatedRoute } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCreditCard, faShoppingBag, faShieldAlt, faHandHoldingDollar, faHeadset, faTruck, faMapMarkedAlt, faBox, faSearch, faClock, faFileInvoice, faInfoCircle, faWineBottle, faPills, faCheck, faSkullCrossbones, faPaw, faBomb,faCopy, faCannabis, faMoneyBill1Wave, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { faAmazon } from '@fortawesome/free-brands-svg-icons';
+import { faCreditCard, faShoppingBag, faShieldAlt, faHandHoldingDollar, faHeadset, faTruck, faMapMarkedAlt, faBox, faSearch, faClock, faFileInvoice, faInfoCircle, faWineBottle, faPills, faCheck, faSkullCrossbones, faPaw, faBomb, faCopy, faCannabis, faMoneyBill1Wave, faExclamationTriangle, faStore, faTv, faBullseye, faGavel, faWarehouse, faHammer } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -53,7 +54,13 @@ export class ServicesComponent implements OnInit {
   faCannabis = faCannabis;
   faMoneyBill1Wave = faMoneyBill1Wave;
   faExclamationTriangle = faExclamationTriangle;
-  
+  faAmazon = faAmazon;
+  faStore = faStore;
+  faTv = faTv;
+  faBullseye = faBullseye;
+  faGavel = faGavel;
+  faWarehouse = faWarehouse;
+  faHammer = faHammer;
 
   getIconByName(iconName: string) {
     const iconMap: { [key: string]: any } = {
@@ -72,6 +79,13 @@ export class ServicesComponent implements OnInit {
       'map-marked-alt': this.faMapMarkedAlt,
       'wine-bottle': this.faWineBottle,
       pills: this.faPills,
+      amazon: this.faAmazon,
+      store: this.faStore,
+      tv: this.faTv,
+      bullseye: this.faBullseye,
+      gavel: this.faGavel,
+      warehouse: this.faWarehouse,
+      hammer: this.faHammer,
     };
 
     return iconMap[iconName] || this.faSearch; // Icono por defecto si no se encuentra
@@ -161,43 +175,51 @@ export class ServicesComponent implements OnInit {
   popularStores = [
     {
       name: 'Amazon',
-      logo: 'assets/images/stores/amazon.png',
+      icon: 'amazon',
       url: 'https://www.amazon.com',
+      color: '#FF9900',
     },
     {
       name: 'Walmart',
-      logo: 'assets/images/stores/walmart.png',
+      icon: 'store',
       url: 'https://www.walmart.com',
+      color: '#0071CE',
     },
     {
       name: 'Best Buy',
-      logo: 'assets/images/stores/bestbuy.png',
+      icon: 'tv',
       url: 'https://www.bestbuy.com',
+      color: '#0046BE',
     },
     {
       name: 'Target',
-      logo: 'assets/images/stores/target.png',
+      icon: 'bullseye',
       url: 'https://www.target.com',
+      color: '#CC0000',
     },
     {
       name: "Macy's",
-      logo: 'assets/images/stores/macys.png',
+      icon: 'shopping-bag',
       url: 'https://www.macys.com',
+      color: '#E21A2C',
     },
     {
       name: 'eBay',
-      logo: 'assets/images/stores/ebay.png',
+      icon: 'gavel',
       url: 'https://www.ebay.com',
+      color: '#E53238',
     },
     {
       name: 'Costco',
-      logo: 'assets/images/stores/costco.png',
+      icon: 'warehouse',
       url: 'https://www.costco.com',
+      color: '#0063A6',
     },
     {
       name: 'Home Depot',
-      logo: 'assets/images/stores/homedepot.png',
+      icon: 'hammer',
       url: 'https://www.homedepot.com',
+      color: '#F96302',
     },
   ];
 
