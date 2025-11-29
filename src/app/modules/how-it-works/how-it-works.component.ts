@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import type { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faUserPlus, faShoppingCart, faCheckCircle, faCreditCard, faShippingFast, faBoxOpen, faTruck, faBell, faBox, faPlus, faMinus} from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons/faStar';
@@ -22,7 +22,7 @@ interface FAQ {
 
 @Component({
     selector: 'app-how-it-works',
-    imports: [CommonModule, FontAwesomeModule],
+    imports: [CommonModule, FaIconComponent],
     templateUrl: './how-it-works.component.html',
     styleUrl: './how-it-works.component.scss'
 })

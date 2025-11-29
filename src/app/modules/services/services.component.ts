@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import  { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import  { ActivatedRoute } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faAmazon } from '@fortawesome/free-brands-svg-icons';
 import { faCreditCard, faShoppingBag, faShieldAlt, faHandHoldingDollar, faHeadset, faTruck, faMapMarkedAlt, faBox, faSearch, faClock, faFileInvoice, faInfoCircle, faWineBottle, faPills, faCheck, faSkullCrossbones, faPaw, faBomb, faCopy, faCannabis, faMoneyBill1Wave, faExclamationTriangle, faStore, faTv, faBullseye, faGavel, faWarehouse, faHammer } from '@fortawesome/free-solid-svg-icons';
 
@@ -26,7 +26,7 @@ interface PricingTier {
 
 @Component({
     selector: 'app-services',
-    imports: [CommonModule, FontAwesomeModule],
+    imports: [CommonModule, FaIconComponent],
     templateUrl: './services.component.html',
     styleUrl: './services.component.scss'
 })

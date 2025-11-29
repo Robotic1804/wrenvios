@@ -10,10 +10,9 @@ import {
 } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import  { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faFacebook, faInstagram, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import { faPhone, faEnvelope, faMapMarkerAlt, faClock, faDirections } from '@fortawesome/free-solid-svg-icons';
-import { faCheckCircle, faExclamation, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faPhone, faEnvelope, faMapMarkerAlt, faClock, faDirections, faCheckCircle, faExclamation, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 
 interface Office {
@@ -34,7 +33,7 @@ interface CountryOffices {
 
 @Component({
     selector: 'app-contact',
-    imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule],
+    imports: [CommonModule, FaIconComponent, ReactiveFormsModule],
     templateUrl: './contact.component.html',
     styleUrls: ['./contact.component.scss']
 })

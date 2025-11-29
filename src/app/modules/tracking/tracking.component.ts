@@ -4,8 +4,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup} from '@angular/forms';
 import { Validators, ReactiveFormsModule } from '@angular/forms';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import  { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { FaIconComponent, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faSpinner, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 // Interfaz para los estados del paquete
@@ -20,7 +19,7 @@ interface TrackingStatus {
 
 @Component({
     selector: 'app-tracking',
-    imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule],
+    imports: [CommonModule, FaIconComponent, ReactiveFormsModule],
     templateUrl: './tracking.component.html',
     styleUrl: './tracking.component.scss'
 })

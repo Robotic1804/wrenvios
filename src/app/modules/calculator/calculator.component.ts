@@ -3,16 +3,15 @@ import { Component } from '@angular/core';
 import  { OnInit } from '@angular/core';
 import  { FormBuilder} from '@angular/forms';
 import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCheckCircle, faExclamation } from '@fortawesome/free-solid-svg-icons';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { faCheckCircle, faExclamation, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { finalize } from 'rxjs/operators';
 import type { ShippingCalculation } from '../../core/services/shipping.service';
 import { ShippingService } from '../../core/services/shipping.service';
 
 @Component({
     selector: 'app-calculator',
-    imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule],
+    imports: [CommonModule, ReactiveFormsModule, FaIconComponent],
     templateUrl: './calculator.component.html',
     styleUrl: './calculator.component.scss'
 })

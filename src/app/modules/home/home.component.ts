@@ -2,14 +2,14 @@ import type { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faShoppingCart, faBox, } from '@fortawesome/free-solid-svg-icons';
 
 
 
 @Component({
     selector: 'app-home',
-    imports: [RouterModule, FormsModule, FontAwesomeModule],
+    imports: [RouterModule, FormsModule, FaIconComponent],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss'
 })

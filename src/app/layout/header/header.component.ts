@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common';
 import type { OnInit} from '@angular/core';
 import { Component, HostListener } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faBars, faXmark, faTimes  } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-header',
-    imports: [CommonModule, RouterModule, FontAwesomeModule],
+    imports: [CommonModule, RouterModule, FaIconComponent],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss'
 })
