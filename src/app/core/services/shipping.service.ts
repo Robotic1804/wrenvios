@@ -1,7 +1,7 @@
 // src/app/core/services/shipping.service.ts
-import type { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import type { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { of, throwError } from 'rxjs';
 import { catchError, delay, map } from 'rxjs/operators';
 
@@ -48,7 +48,6 @@ export interface TrackingEvent {
   providedIn: 'root',
 })
 export class ShippingService {
-
   // Mock data para usar mientras no hay backend
   private mockRates: ShippingRate[] = [
     {
@@ -122,9 +121,7 @@ export class ShippingService {
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * Obtiene las tarifas de envío disponibles
-   */
+
   getRates(): Observable<ShippingRate[]> {
     // En un entorno real, esto sería una petición HTTP
     // return this.http.get<ShippingRate[]>(`${this.apiUrl}/rates`)

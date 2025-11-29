@@ -1,15 +1,15 @@
 // src/app/modules/contact/contact.component.ts
 import { CommonModule,  } from '@angular/common';
-import type { OnInit } from '@angular/core';
+import  { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import type {
+import  {
   FormBuilder,
   FormGroup} from '@angular/forms';
 import {
   Validators,
 } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import type { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import  { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faFacebook, faInstagram, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faPhone, faEnvelope, faMapMarkerAlt, faClock, faDirections } from '@fortawesome/free-solid-svg-icons';

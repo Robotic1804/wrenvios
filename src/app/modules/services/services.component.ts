@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import type { OnInit } from '@angular/core';
+import  { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import type { ActivatedRoute } from '@angular/router';
+import  { ActivatedRoute } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faAmazon } from '@fortawesome/free-brands-svg-icons';
 import { faCreditCard, faShoppingBag, faShieldAlt, faHandHoldingDollar, faHeadset, faTruck, faMapMarkedAlt, faBox, faSearch, faClock, faFileInvoice, faInfoCircle, faWineBottle, faPills, faCheck, faSkullCrossbones, faPaw, faBomb, faCopy, faCannabis, faMoneyBill1Wave, faExclamationTriangle, faStore, faTv, faBullseye, faGavel, faWarehouse, faHammer } from '@fortawesome/free-solid-svg-icons';

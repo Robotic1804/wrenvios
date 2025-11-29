@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
-import type { OnInit } from '@angular/core';
+import  { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import type { FormBuilder, FormGroup} from '@angular/forms';
+import { FormBuilder, FormGroup} from '@angular/forms';
 import { Validators, ReactiveFormsModule } from '@angular/forms';
-import type { Router } from '@angular/router';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import type { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import  { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faSpinner, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 // Interfaz para los estados del paquete
@@ -38,7 +38,6 @@ export class TrackingComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
     private library: FaIconLibrary // importa FaIconLibrary aquí
   ) {
     // registra el icono del spinner
