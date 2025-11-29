@@ -1,10 +1,7 @@
 import { CommonModule } from '@angular/common';
-import  { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup} from '@angular/forms';
-import { Validators, ReactiveFormsModule } from '@angular/forms';
-
-import { FaIconComponent, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faSpinner, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 // Interfaz para los estados del paquete
@@ -23,7 +20,7 @@ interface TrackingStatus {
     templateUrl: './tracking.component.html',
     styleUrl: './tracking.component.scss'
 })
-export class TrackingComponent implements OnInit {
+export class TrackingComponent {
   // Iconos de FontAwesome
   faSpinner = faSpinner;
   faExclamationCircle = faExclamationCircle;
@@ -35,20 +32,11 @@ export class TrackingComponent implements OnInit {
   packageFound = false;
   
 
-  constructor(
-    private fb: FormBuilder,
-    private library: FaIconLibrary // importa FaIconLibrary aquí
-  ) {
-    // registra el icono del spinner
-    this.library.addIcons(faSpinner);
-
-    // inicializa tu formGroup EN EL CONSTRUCTOR
+  constructor(private fb: FormBuilder) {
     this.trackingForm = this.fb.group({
       trackingNumber: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
-
-  ngOnInit(): void {}
 
   searchPackage(): void {
     if (this.trackingForm.invalid) {

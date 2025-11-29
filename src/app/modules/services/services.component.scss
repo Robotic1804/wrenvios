@@ -5,7 +5,7 @@
 
 // Hero de servicios
 .services-hero {
-  background: linear-gradient(rgba($primary, 0.8), rgba($primary, 0.8)), url('/assets/images/services-bg.jpg') center/cover no-repeat;
+  background: linear-gradient(135deg, rgba($primary, 0.95), rgba($primary, 0.85));
   padding: 120px 0 60px;
   text-align: center;
   color: white;
@@ -574,7 +574,7 @@
 // Sección CTA
 .cta-section {
   padding: 80px 0;
-  background: linear-gradient(rgba($secondary, 0.9), rgba($secondary, 0.9)), url('/assets/images/cta-bg.jpg') center/cover no-repeat;
+  background: linear-gradient(135deg, rgba($secondary, 0.95), rgba($secondary, 0.85));
   text-align: center;
   color: white;
   

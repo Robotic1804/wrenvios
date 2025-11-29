@@ -1,15 +1,8 @@
 // src/app/modules/contact/contact.component.ts
-import { CommonModule,  } from '@angular/common';
-import  { OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import  {
-  FormBuilder,
-  FormGroup} from '@angular/forms';
-import {
-  Validators,
-} from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import  { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faFacebook, faInstagram, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faPhone, faEnvelope, faMapMarkerAlt, faClock, faDirections, faCheckCircle, faExclamation, faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -37,7 +30,7 @@ interface CountryOffices {
     templateUrl: './contact.component.html',
     styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent {
   // Iconos de FontAwesome
   faPhone = faPhone;
   faEnvelope = faEnvelope;
@@ -49,12 +42,12 @@ export class ContactComponent implements OnInit {
   faDirections = faDirections;
   faWhatsapp = faWhatsapp;
 
-  // Iconos (para autocompletar en TS si quieres)
   faCheckCircle = faCheckCircle;
   faExclamation = faExclamation;
   faSpinner = faSpinner;
-  /// Variables del formulario
-  contactForm!: FormGroup;
+
+  // Variables del formulario
+  contactForm: FormGroup;
   isSubmitted = false;
   isLoading = false;
   formSuccess = false;
@@ -62,7 +55,14 @@ export class ContactComponent implements OnInit {
   errorMessage = '';
 
   constructor(private fb: FormBuilder, private sanitizer: DomSanitizer) {
-    this.createForm();
+    this.contactForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern(/^\+?[0-9\s\-\(\)]+$/)]],
+      subject: ['general', Validators.required],
+      trackingNumber: [''],
+      message: ['', [Validators.required, Validators.minLength(10)]],
+    });
   }
 
   // Opciones para el formulario
@@ -73,15 +73,6 @@ export class ContactComponent implements OnInit {
     { value: 'complaint', label: 'Reclamo' },
     { value: 'other', label: 'Otro' },
   ];
-  sanitizedOffices: {
-    name: string;
-    address: string;
-    phone: string;
-    email: string;
-    hours: string;
-    map: string;
-    safeMapUrl: SafeResourceUrl;
-  }[] = [];
 
   // Ubicaciones de oficinas
   offices: CountryOffices[] = [
@@ -116,31 +107,6 @@ export class ContactComponent implements OnInit {
     },
   ];
 
-  ngOnInit() {
-    this.contactForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern(/^\+?\d{7,15}$/)]],
-      subject: ['', Validators.required],
-      trackingNumber: [''],
-      message: ['', [Validators.required, Validators.minLength(10)]],
-    });
-  }
-
-  // Crea el formulario con validaciones
-  createForm(): void {
-    this.contactForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      phone: [
-        '',
-        [Validators.required, Validators.pattern(/^\+?[0-9\s\-\(\)]+$/)],
-      ],
-      subject: ['general', Validators.required],
-      trackingNumber: [''],
-      message: ['', [Validators.required, Validators.minLength(10)]],
-    });
-  }
 
   /** Marca inválidos y touched para mostrar estilos de error */
   isInvalidAndTouched(field: string): boolean {

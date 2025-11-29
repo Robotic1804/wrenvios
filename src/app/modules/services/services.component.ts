@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
-import  { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import  { ActivatedRoute } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faAmazon } from '@fortawesome/free-brands-svg-icons';
-import { faCreditCard, faShoppingBag, faShieldAlt, faHandHoldingDollar, faHeadset, faTruck, faMapMarkedAlt, faBox, faSearch, faClock, faFileInvoice, faInfoCircle, faWineBottle, faPills, faCheck, faSkullCrossbones, faPaw, faBomb, faCopy, faCannabis, faMoneyBill1Wave, faExclamationTriangle, faStore, faTv, faBullseye, faGavel, faWarehouse, faHammer } from '@fortawesome/free-solid-svg-icons';
+import { faCreditCard, faShoppingBag, faShieldAlt, faHandHoldingDollar, faHeadset, faTruck, faMapMarkedAlt, faBox, faSearch, faClock, faFileInvoice, faInfoCircle, faWineBottle, faPills, faCheck, faSkullCrossbones, faPaw, faBomb, faCopy, faCannabis, faMoneyBill1Wave, faExclamationTriangle, faStore, faTv, faBullseye, faGavel, faWarehouse, faHammer, faLaptop, faShirt, faHome, faSpa, faGamepad, faRunning } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -26,11 +25,11 @@ interface PricingTier {
 
 @Component({
     selector: 'app-services',
-    imports: [CommonModule, FaIconComponent],
+    imports: [CommonModule, FaIconComponent, RouterLink],
     templateUrl: './services.component.html',
     styleUrl: './services.component.scss'
 })
-export class ServicesComponent implements OnInit {
+export class ServicesComponent {
   // Iconos de FontAwesome
   faCreditCard = faCreditCard;
   faShoppingBag = faShoppingBag;
@@ -61,6 +60,12 @@ export class ServicesComponent implements OnInit {
   faGavel = faGavel;
   faWarehouse = faWarehouse;
   faHammer = faHammer;
+  faLaptop = faLaptop;
+  faShirt = faShirt;
+  faHome = faHome;
+  faSpa = faSpa;
+  faGamepad = faGamepad;
+  faRunning = faRunning;
 
   getIconByName(iconName: string) {
     const iconMap: { [key: string]: any } = {
@@ -86,6 +91,12 @@ export class ServicesComponent implements OnInit {
       gavel: this.faGavel,
       warehouse: this.faWarehouse,
       hammer: this.faHammer,
+      laptop: this.faLaptop,
+      tshirt: this.faShirt,
+      home: this.faHome,
+      spa: this.faSpa,
+      gamepad: this.faGamepad,
+      running: this.faRunning,
     };
 
     return iconMap[iconName] || this.faSearch; // Icono por defecto si no se encuentra
@@ -344,16 +355,6 @@ export class ServicesComponent implements OnInit {
     },
   ];
 
-  constructor(private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    // Verificar si hay un parámetro de servicio en la URL
-    this.route.params.subscribe((params) => {
-      if (params['type']) {
-        this.activeService = params['type'];
-      }
-    });
-  }
 
   // Cambiar el servicio activo
   setActiveService(service: string): void {
